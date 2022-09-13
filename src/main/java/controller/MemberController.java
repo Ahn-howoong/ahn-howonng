@@ -1,5 +1,8 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,16 +14,17 @@ import vo.MemberVO;
 @Controller
 public class MemberController {
 
+	final String PATH = "/WEB-INF/views/";
 	MemberDAO member_dao;
 
 	public void setMember_dao(MemberDAO member_dao) {
 		this.member_dao = member_dao;
 	}
 
-	@RequestMapping(value = { "/", "regi_form.do" })
-	public String show(Model model) {
+	@RequestMapping("/regi_form.do")
+	public String regi_show(Model model) {
 
-		return "/WEB-INF/views/member/regi_form.jsp";
+		return PATH + "member/regi_form.jsp";
 	}
 
 	// 아이디 중복 체크
@@ -49,5 +53,43 @@ public class MemberController {
 		}
 
 		return result;
+	}
+
+	@RequestMapping("/login_form.do")
+	public String login_show(Model model) {
+
+		return PATH + "member/login_form.jsp";
+	}
+
+	@RequestMapping("/login.do")
+	@ResponseBody
+	public String loginCheck(MemberVO vo, HttpServletRequest request) {
+		MemberVO baseVO = member_dao.select(vo);
+
+		String resultStr = "";
+
+		// id가 존재하지 않는 경우
+		if (baseVO == null) {
+			resultStr = "no_id";
+			return resultStr; // no_id를 콜백 메서드로 전달
+		}
+
+		// 비밀번호 불일치
+		if (!baseVO.getPwd().equals(vo.getPwd())) {
+			resultStr = "no_pwd";
+			return resultStr; // no_pwd를 콜백 메서드로 전달
+		}
+
+		// 아이디와 비밀번호에 문제가 없다면 세션에 MemberVO 객체로 저장
+		// 세션에 저장된 데이터는 현재 프로젝트의 모든 jsp에서 사용이 가능
+		HttpSession session = request.getSession();
+		session.setAttribute("user", baseVO);
+		resultStr = "clear";
+		return resultStr; // 로그인 성공시 clear를 콜백 메서드로 전달
+	}
+
+	@RequestMapping(value = { "/", "/main.do" })
+	public String checkLogin() {
+		return PATH + "main.jsp";
 	}
 }
