@@ -4,11 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <script src="/regi/resources/js/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="/regi/resources/css/regi_form.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/regi_form.css">
 <!--autoload=false 파라미터를 이용하여 자동으로 로딩되는 것을 막습니다.-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <title>진리도서관 :: 회원가입</title>
-<script type="text/javascript" src="/vs/resources/js/httpRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 	    $(".nav_container nav ul li").mouseenter(function (e) {
@@ -150,6 +150,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="check_login.jsp"/>
     <div id="all">
       <header>
         <div class="box"> 
@@ -161,7 +162,7 @@
             </ul>
           </nav>
           <div id="logo">
-              <a href="index.html"><img src="/regi/resources/img/logo.png"></a>
+              <a href="index.html"><img src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
            </div> 
         </div> 
       </header>

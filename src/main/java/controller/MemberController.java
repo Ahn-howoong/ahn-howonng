@@ -92,4 +92,14 @@ public class MemberController {
 	public String checkLogin() {
 		return PATH + "main.jsp";
 	}
+
+	@RequestMapping("/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		// user로 저장해둔 데이터를 세션에서 제거
+		session.removeAttribute("user");
+
+		return "redirect:main.do";
+	}
+
 }
