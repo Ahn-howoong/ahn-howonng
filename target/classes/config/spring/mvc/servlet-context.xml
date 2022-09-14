@@ -30,6 +30,9 @@
 		<beans:property name="member_dao" ref="member_daoBean"/>
 	</beans:bean>
 	
+	<beans:bean id="review_controller" class="controller.ReviewController">
+		<beans:property name="review_dao" ref="review_daoBean"/>
+	</beans:bean>
 	
 </beans:beans>
 

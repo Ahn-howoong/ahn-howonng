@@ -10,5 +10,9 @@
 	<!-- constructor injection : 생성자를 통해 값을 주입한다
 	 	<constructor-arg ref="sqlSessionBean"/>  -->
 	</bean> 
+	
+	<bean id="review_daoBean" class="dao.ReviewDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean> 
 		
 </beans>
