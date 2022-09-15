@@ -202,6 +202,7 @@
 								<tr>
 									<th scope="col" class="th-num">번호</th>
 									<th scope="col" class="th-title">제목</th>
+									<th scope="col" class="th-num">작성자</th>
 									<th scope="col" class="th-date">등록일</th>
 								</tr>
 							</thead>
@@ -210,17 +211,19 @@
 									<td></td>
 									<th><a href="#">대출기간은 언제까진가요?</a>
 										<p>테스트</p></th>
+									<td>홍길동</td>
 									<td>2017.07.13</td>
 								</tr>
 								<tr>
 									<td></td>
 									<th><a href="#!">도서관 이용시간은 언제까진가요?</a></th>
+									<td>홍길동</td>
 									<td>2017.06.15</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<button type="submit" class="btn btn-dark" id="write_btn">글쓰기</button>
+					<input type="button" class="btn btn-dark" id="write_btn" onclick="location.href='review_write.do'" value="글쓰기">
 				</div>
 			</div>
 		</div>

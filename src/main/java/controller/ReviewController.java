@@ -17,8 +17,14 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/review.do")
-	public String regi_show(Model model) {
+	public String review(Model model) {
 
 		return PATH + "review/review.jsp";
+	}
+
+	@RequestMapping("/review_write.do")
+	public String review_write(Model model) {
+
+		return PATH + "review/review_write.jsp";
 	}
 }
