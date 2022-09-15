@@ -30,61 +30,33 @@
 	rel="stylesheet">
 <title>진리도서관 :: 나만의한줄평</title>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$(".nav_container nav ul li").mouseenter(
-								function(e) {
-									$(".nav_container nav ul li a").siblings(
-											".nav_dropdown").show();
-								});
-
-						$("nav").mouseleave(function() {
-							$(".nav_dropdown").hide();
+	$(document).ready(
+			function() {
+				$(".nav_container nav ul li").mouseenter(
+						function(e) {
+							$(".nav_container nav ul li a").siblings(
+									".nav_dropdown").show();
 						});
 
-						$(".nav_dropdown div").mouseenter(
-								function() {
-									$(this).parentsUntil("li").parent().css(
-											"background-color", "#ffe695");
-								});
+				$("nav").mouseleave(function() {
+					$(".nav_dropdown").hide();
+				});
 
-						$(".nav_dropdown div").mouseleave(
-								function() {
-									$(this).parentsUntil("li").parent().css(
-											"background-color", "#fff");
-								});
-						$("#search_btn")
-								.click(
-										function() {
-											$
-													.ajax(
-															{
-																method : "GET",
-																url : "https://dapi.kakao.com/v3/search/book?target=title",
-																data : {
-																	query : $(
-																			"#search")
-																			.val()
-																},
-																headers : {
-																	Authorization : "KakaoAK 8e4c9f81d06f13ce398748177abb8d35"
-																}
-															})
-													.done(
-															function(msg) {
-																for (var i = 0; i < 10; i++) {
-																	$("#title1")
-																			.append(
-																					msg.documents[i].title);
-																	$(
-																			"#thumbnail1")
-																			.append(
-																					"<img src='" + msg.documents[i].thumbnail + "'>");
-																}
-															});
-										});
-					});
+				$(".nav_dropdown div").mouseenter(
+						function() {
+							$(this).parentsUntil("li").parent().css(
+									"background-color", "#ffe695");
+						});
+
+				$(".nav_dropdown div").mouseleave(
+						function() {
+							$(this).parentsUntil("li").parent().css(
+									"background-color", "#fff");
+						});
+			});
+	function openWin() {
+		window.open("book_search.do", "진리도서관 :: 책 검색", "width=650, height=1000");
+	}
 </script>
 </head>
 <body>
@@ -152,6 +124,8 @@
 		</div>
 
 		<div class="box">
+			<%-- <input value="${ title }"> --%>
+		
 			<aside>
 				<ul>
 					<li id="strong">나만의 도서관</li>
@@ -183,42 +157,26 @@
 								<th><span>제목</span></th>
 								<td colspan="2"><input type="text" placeholder="제목 입력"></td>
 								<td><input type="button" class="btn-dark" id="search_btn"
-									value="책 검색"></td>
+									value="책 검색" onclick="openWin();"></td>
 							</tr>
 						</thead>
 						<thead>
 							<tr>
 								<th><span>기록할 책</span></th>
-								<td colspan="3">동의보감</td>
+								<td colspan="3" id="bTitle"></td>
 							</tr>
 							<tr>
 								<th><span>작가</span></th>
-								<td colspan="3">허준</td>
+								<td colspan="3" id="bAuthors"></td>
 							</tr>
 						</thead>
 						<tr>
-						<td colspan="4">
-							<textarea placeholder="당신의 이야기를 들려주세요"></textarea>
-						</td>
+							<td colspan="4"><textarea placeholder="당신의 이야기를 들려주세요"></textarea>
+							</td>
 						</tr>
+						<input id="bThumbnail" type="hidden">
 					</table>
 				</div>
-				<!-- 
-				<div class="board_write">
-					<div class="title">
-						<p>
-							<span>제목</span> <input type="text" placeholder="제목 입력"> <input
-								type="button" class="btn-dark" id="search_btn" value="책 검색">
-						</p>
-						<p>
-							<span>기록할 책</span> <input type="hidden" value="" id="book_title">
-						</p>
-					</div>
-					<div class="cont">
-						<textarea placeholder="당신의 이야기를 들려주세요"></textarea>
-					</div>
-				</div>
-				 -->
 				<div class="bt_wrap">
 					<a href="#" class="submit">등록</a> <a href="project.html"
 						class="submit">취소</a>

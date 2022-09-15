@@ -47,6 +47,7 @@
     .login { padding:30px 20px 20px 20px; background-color:#ffffff; 
             width:330px; border-radius: 15px;  }
     .login input { width:280px; height:38px; margin : 5px; }
+    .login input[type=button] { cursor : pointer; }
     input[type=password] {font-family:"serif";}
     .login h4, .login li { padding-left:10px; }
     .login span { background-color: #fef0bc;}

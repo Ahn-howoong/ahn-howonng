@@ -27,4 +27,10 @@ public class ReviewController {
 
 		return PATH + "review/review_write.jsp";
 	}
+
+	@RequestMapping("/book_search.do")
+	public String book_search(Model model) {
+
+		return PATH + "review/book_search.jsp";
+	}
 }
