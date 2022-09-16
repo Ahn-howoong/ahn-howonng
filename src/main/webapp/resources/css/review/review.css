@@ -342,12 +342,12 @@ aside ul li a:visited:hover {
 }
 
 .board-table .th-num {
-    width: 100px;
+    width: 80px;
     text-align: center;
 }
 
 .board-table .th-date {
-    width: 200px;
+    width: 180px;
 }
 
 .board-table th,

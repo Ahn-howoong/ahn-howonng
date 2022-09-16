@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/book_search.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review/book_search.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 <link href="https://webfontworld.github.io/NanumSquare/NanumSquare.css"
 	rel="stylesheet">

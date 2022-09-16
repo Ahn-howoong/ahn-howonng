@@ -9,7 +9,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/review_write.css">
+	href="${pageContext.request.contextPath}/resources/css/review/review_write.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"

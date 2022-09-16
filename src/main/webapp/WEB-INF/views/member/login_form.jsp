@@ -7,7 +7,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <title>진리도서관 :: 로그인</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login_form.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/login_form.css">
 <script type="text/javascript">
 	$(document).ready(function () {
 	    $(".nav_container nav ul li").mouseenter(function (e) {

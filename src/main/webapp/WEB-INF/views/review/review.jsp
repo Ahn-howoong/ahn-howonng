@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/review.css">
+	href="${pageContext.request.contextPath}/resources/css/review/review.css">
 <!-- 부트스트랩 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -204,26 +206,24 @@
 									<th scope="col" class="th-title">제목</th>
 									<th scope="col" class="th-num">작성자</th>
 									<th scope="col" class="th-date">등록일</th>
+									<th scope="col" class="th-num">조회수</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td></td>
-									<th><a href="#">대출기간은 언제까진가요?</a>
-										<p>테스트</p></th>
-									<td>홍길동</td>
-									<td>2017.07.13</td>
-								</tr>
-								<tr>
-									<td></td>
-									<th><a href="#!">도서관 이용시간은 언제까진가요?</a></th>
-									<td>홍길동</td>
-									<td>2017.06.15</td>
-								</tr>
+								<c:forEach var="vo" items="${list}">
+									<tr>
+										<td>${vo.idx}</td>
+										<th><a href="/review/review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
+										<td>${vo.id}</td>
+										<td>${vo.regdate}</td>
+										<td>${vo.readhit}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
-					<input type="button" class="btn btn-dark" id="write_btn" onclick="location.href='review_write.do'" value="글쓰기">
+					<input type="button" class="btn btn-dark" id="write_btn"
+						onclick="location.href='review_write.do'" value="글쓰기">
 				</div>
 			</div>
 		</div>
