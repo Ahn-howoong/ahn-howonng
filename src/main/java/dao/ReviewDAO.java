@@ -20,4 +20,11 @@ public class ReviewDAO {
 		return list;
 	}
 
+	// 상세보기를 위한 게시물 한 건 조회
+	public ReviewVO selectOne(int idx) {
+
+		ReviewVO vo = sqlSession.selectOne("r.review_one", idx);
+		return vo;
+	}
+
 }

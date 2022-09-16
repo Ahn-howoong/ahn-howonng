@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,9 +214,9 @@
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.idx}</td>
-										<th><a href="/review/review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
+										<th><a href="review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
 										<td>${vo.id}</td>
-										<td>${vo.regdate}</td>
+										<td>${fn:split(vo.regdate, ' ')[0]}</td>
 										<td>${vo.readhit}</td>
 									</tr>
 								</c:forEach>

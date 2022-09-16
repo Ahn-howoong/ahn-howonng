@@ -2,7 +2,7 @@ package vo;
 
 public class ReviewVO {
 	private int idx, readhit, ref, step, depth;
-	private String id, subject, content, ip, regdate;
+	private String id, subject, content, ip, regdate, title, authors, thumbnail;
 
 	public int getIdx() {
 		return idx;
@@ -82,6 +82,30 @@ public class ReviewVO {
 
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(String authors) {
+		this.authors = authors;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 }

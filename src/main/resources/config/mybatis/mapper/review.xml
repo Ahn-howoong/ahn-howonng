@@ -8,4 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from review order by ref DESC
 	</select>
 	
+	<!-- 상세보기 -->
+	<select id="review_one" parameterType="int" resultType="review">
+		select * from review where idx = #{idx}
+	</select>
+	
 </mapper>

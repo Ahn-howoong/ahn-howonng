@@ -41,7 +41,10 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/review_view.do")
-	public String review_view(Model model) {
+	public String review_view(Model model, int idx) {
+
+		ReviewVO vo = review_dao.selectOne(idx);
+		model.addAttribute("vo", vo);
 
 		return PATH + "review/review_view.jsp";
 	}
