@@ -48,6 +48,37 @@
                 $(this).parentsUntil("li").parent().css("background-color", "#fff");
             });
         });
+    	/* 삭제버튼 클릭 */
+    	function del(idx) {
+    		
+    		confirm("정말 삭제하시겠습니까?");
+    		
+    		// Ajax를 통해 idx를 서버로 전송
+    		var url = "review_delete.do";
+    		var param = "idx=" + idx;
+    		sendRequest(url, param, resultFunc, "Post"); // 넘어갈 url, 파라미터, 콜백함수, 전송방식
+    		
+    		
+    	} // del()
+    	
+    	/* 삭제결과를 확인할 콜백메서드 */
+    	function resultFunc() {
+    		// 로딩이 완료되고, 결과로 데이터에 대해 404, 500 오류가 없다면
+    		if( xhr.readyState == 4 && xhr.status == 200) {
+    			
+    			// 컨트롤러에서 삭제 후 return 해준 데이터를 받는다.
+    			var data = xhr.responseText;
+    			
+    			if(data == 'no') {
+    				alert("삭제 실패했습니다");
+    				return;
+    			} else {
+    				alert("삭제 완료되었습니다");
+    				location.href="review.do";
+    			}
+    			
+    		}
+    	}
 
 </script>
 </head>
@@ -108,7 +139,8 @@
 										<li><a href="review.html">나만의한줄평</a></li>
 										<li><a href="mbti.html">도서관NPC테스트</a></li>
 									</div>
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 					</nav>
 				</div>
@@ -157,7 +189,7 @@
 								<input type="button" value="수정"
 									onclick="location.href='review_modify.do?idx=${vo.idx}'">
 								<input type="button" value="삭제"
-									onclick="location.href='modify_form.do?idx=${vo.idx}'">
+									onclick="del(${vo.idx});">
 								<input type="button" value="목록"
 									onclick="location.href='review.do'">
 								<!-- 글 작성 게시판 마다 링크 바꿔야함-->

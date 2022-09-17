@@ -52,5 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		regdate=sysdate
 		where idx=#{idx}
 	</update>
+	
+		<!-- 게시글 삭제 -->
+	<delete id="review_delete" parameterType="int">
+		delete from review where idx = #{idx}
+	</delete>
 
 </mapper>

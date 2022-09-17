@@ -45,4 +45,11 @@ public class ReviewDAO {
 		return res;
 	}
 
+	// 게시글 삭제
+	public int delete(int idx) {
+		// idx는 파라미터 값이다.
+		int res = sqlSession.delete("r.review_delete", idx);
+		return res;
+	}
+
 }

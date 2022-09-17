@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.ReviewDAO;
 import vo.ReviewVO;
@@ -89,7 +90,6 @@ public class ReviewController {
 	@RequestMapping("/review_modify.do")
 	public String review_modify(Model model, int idx) {
 
-		System.out.println("수정폼 -" + idx);
 		ReviewVO vo = review_dao.selectOne(idx);
 		model.addAttribute("vo", vo);
 
@@ -107,5 +107,21 @@ public class ReviewController {
 		int res = review_dao.update(vo);
 
 		return "redirect:review_view.do?idx=" + vo.getIdx();
+	}
+
+	// 삭제 메서드
+	@RequestMapping("/review_delete.do")
+	@ResponseBody // return 값을 jsp 등으로 인식하지 않고, 콜백메서드로 전달하기 위한 키워드
+	public String delete(int idx) {
+		int res = review_dao.delete(idx);
+
+		String result = "no";
+		if (res == 1) {
+			result = "yes";
+		}
+
+		// @ResponseBody가 적용되어 있으므로
+		// result에 no 또는 yes 데이터는 콜백 메서드로 돌아간다.
+		return result;
 	}
 }
