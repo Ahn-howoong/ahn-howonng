@@ -39,4 +39,10 @@ public class ReviewDAO {
 		return res;
 	}
 
+	// 내용 수정하기
+	public int update(ReviewVO vo) {
+		int res = sqlSession.update("r.review_update", vo);
+		return res;
+	}
+
 }

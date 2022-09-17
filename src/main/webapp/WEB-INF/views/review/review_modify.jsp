@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>진리도서관 :: 나만의한줄평</title>
-<!-- Bootstrap CSS -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/review/review_view.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/review/review_write.css">
+<!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -30,25 +28,52 @@
 	crossorigin="anonymous"></script>
 <link href="https://webfontworld.github.io/NanumSquare/NanumSquare.css"
 	rel="stylesheet">
-<script>
-        $(document).ready(function () {
-            $(".nav_container nav ul li").mouseenter(function (e) {
-                $(".nav_container nav ul li a").siblings(".nav_dropdown").show();
-            });
+<title>진리도서관 :: 나만의한줄평</title>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$(".nav_container nav ul li").mouseenter(
+						function(e) {
+							$(".nav_container nav ul li a").siblings(
+									".nav_dropdown").show();
+						});
 
-            $("nav").mouseleave(function () {
-                $(".nav_dropdown").hide();
-            });
+				$("nav").mouseleave(function() {
+					$(".nav_dropdown").hide();
+				});
 
-            $(".nav_dropdown div").mouseenter(function () {
-                $(this).parentsUntil("li").parent().css("background-color", "#ffe695");
-            });
+				$(".nav_dropdown div").mouseenter(
+						function() {
+							$(this).parentsUntil("li").parent().css(
+									"background-color", "#ffe695");
+						});
 
-            $(".nav_dropdown div").mouseleave(function () {
-                $(this).parentsUntil("li").parent().css("background-color", "#fff");
-            });
-        });
+				$(".nav_dropdown div").mouseleave(
+						function() {
+							$(this).parentsUntil("li").parent().css(
+									"background-color", "#fff");
+						});
+			});
 
+	function send(f) {
+		var subject = f.subject.value;
+		var content = f.content.value;
+		f.title.value = document.getElementById("bTitle").innerHTML;
+		f.authors.value = document.getElementById("bAuthors").innerHTML; 
+		
+		if(subject=='') {
+			alert("제목을 입력하세요");
+			return;
+		}
+		if(content=='') {
+			alert("내용을 입력하세요");
+			return;
+		}
+		
+		f.action = "review_update.do";
+		f.method = "post";
+		f.submit();
+	}
 </script>
 </head>
 <body>
@@ -128,42 +153,54 @@
 			<div class="board_wrap">
 				<div id="location">
 					<div class="loc_title">
-						<h2>나만의 한줄평</h2>
+						<h2>한줄평 작성</h2>
 					</div>
 					<div class="loc_history">
 						홈 &nbsp;>&nbsp; 나만의 도서관 &nbsp;> &nbsp; <b> 나만의한줄평 </b>
 					</div>
 				</div>
-				<div class="box">
-					<div class="board_write">
-						<div class="title">
-							<h5>${vo.subject}</h5>
-							<hr>
-							<span>작성자 &nbsp;|&nbsp; <b>${vo.id}</b></span> <span>작성일
-								&nbsp;|&nbsp; <b>${fn:split(vo.regdate, ' ')[0]}</b>
-							</span> <span>조회수 &nbsp;|&nbsp; <b>${vo.readhit}</b></span>
-							<hr>
-							<div class="cont"><pre style="font-size : 16px; font-family:'NanumSquare';">${vo.content}</pre></div>
-							<hr>
-							<div class="book_info">
-								<img src="${vo.thumbnail}">
-								<div class="book_detail">
-									<b>읽은 책</b>&nbsp;|&nbsp;${vo.title}<br>
-									<b>작가</b>&nbsp;|&nbsp;${vo.authors}
-								</div>
-							</div>
-							<hr>
-							<div class="bt_wrap">
-								<input type="button" value="수정"
-									onclick="location.href='review_modify.do?idx=${vo.idx}'">
-								<input type="button" value="삭제"
-									onclick="location.href='modify_form.do?idx=${vo.idx}'">
-								<input type="button" value="목록"
-									onclick="location.href='review.do'">
-								<!-- 글 작성 게시판 마다 링크 바꿔야함-->
-							</div>
-						</div>
-					</div>
+				<div class="board_table">
+				<form id="board_tbl">
+					<table>
+						<colgroup>
+							<col width="15%;" />
+							<col width="40%;" />
+							<col width="10%;" />
+							<col width="45%;" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th><span>제목</span></th>
+								<td colspan="2"><input type="text" name="subject" value="${vo.subject}"></td>
+							</tr>
+						</thead>
+						<thead>
+							<tr>
+								<th><span>기록할 책</span></th>
+								<td colspan="2" id="bTitle">${vo.title}</td>
+							</tr>
+							<tr>
+								<th><span>작가</span></th>
+								<td colspan="2" id="bAuthors">${vo.authors}</td>
+							</tr>
+						</thead>
+						<tr>
+							<td colspan="3">
+								<textarea placeholder="당신의 이야기를 들려주세요" name="content">${vo.content}</textarea>
+							</td>
+						</tr>
+						<input type="hidden" name="idx" value="${vo.idx}">
+						<input type="hidden" name="title" value="">
+						<input type="hidden" name="authors" value="">
+						<input type="hidden" name="id" value="${user.id}">
+						<input id="bThumbnail" type="hidden" name="thumbnail" value="${vo.thumbnail}">
+					</table>
+					</form>
+				</div>
+				<div class="bt_wrap">
+					<a class="submit" href="javascript:send(document.getElementById('board_tbl'));">저장</a>
+					<a href="review.do" class="submit">취소</a>
+					<!-- 글 작성 게시판 마다 링크 바꿔야함-->
 				</div>
 			</div>
 		</div>
@@ -184,6 +221,5 @@
 				</div>
 			</div>
 		</footer>
-	</div>
 </body>
 </html>

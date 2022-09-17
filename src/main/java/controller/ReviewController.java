@@ -26,6 +26,7 @@ public class ReviewController {
 		this.review_dao = review_dao;
 	}
 
+	// 한줄평 메인 페이지 보이기
 	@RequestMapping("/review.do")
 	public String review(Model model) {
 
@@ -38,18 +39,21 @@ public class ReviewController {
 		return PATH + "review/review.jsp";
 	}
 
+	// 한줄평 작성 페이지로 이동
 	@RequestMapping("/review_write.do")
 	public String review_write(Model model) {
 
 		return PATH + "review/review_write.jsp";
 	}
 
+	// 책 검색하기
 	@RequestMapping("/book_search.do")
 	public String book_search(Model model) {
 
 		return PATH + "review/book_search.jsp";
 	}
 
+	// 한줄평 조회하기
 	@RequestMapping("/review_view.do")
 	public String review_view(Model model, int idx) {
 
@@ -68,16 +72,40 @@ public class ReviewController {
 		return PATH + "review/review_view.jsp";
 	}
 
+	// 내용 작성하기
 	@RequestMapping("/review_insert.do")
 	public String review_insert(ReviewVO vo) {
 
 		// ip 가져오기
 		String ip = request.getRemoteAddr();
 		vo.setIp(ip);
-		System.out.println(vo.getTitle());
 
 		int res = review_dao.insert(vo);
 
 		return "redirect:review.do";
+	}
+
+	// 수정폼 이동하기
+	@RequestMapping("/review_modify.do")
+	public String review_modify(Model model, int idx) {
+
+		System.out.println("수정폼 -" + idx);
+		ReviewVO vo = review_dao.selectOne(idx);
+		model.addAttribute("vo", vo);
+
+		return PATH + "review/review_modify.jsp";
+	}
+
+	// 수정하기
+	@RequestMapping("/review_update.do")
+	public String review_update(ReviewVO vo) {
+
+		// ip 가져오기
+		String ip = request.getRemoteAddr();
+		vo.setIp(ip);
+
+		int res = review_dao.update(vo);
+
+		return "redirect:review_view.do?idx=" + vo.getIdx();
 	}
 }

@@ -213,7 +213,7 @@
 							<tbody>
 								<c:forEach var="vo" items="${list}">
 									<tr>
-										<td>${vo.idx}</td>
+										<td>${vo.rank}</td>
 										<th><a href="review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
 										<td>${vo.id}</td>
 										<td>${fn:split(vo.regdate, ' ')[0]}</td>

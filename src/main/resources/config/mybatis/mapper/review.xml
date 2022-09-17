@@ -5,8 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="r">
 
 	<select id="review_list" resultType="review">
-		select * from review order
-		by ref DESC
+		select RANK() OVER(order by idx) AS rank,
+		idx, subject, id, regdate, readhit FROM review
+		order by rank DESC
+
 	</select>
 
 	<!-- 상세보기 -->
@@ -17,7 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 새글 추가 -->
 	<insert id="review_insert" parameterType="review">
-		insert into review values(
+		insert into review
+		values(
 		seq_review_idx.nextVal,
 		#{id},
 		#{subject},
@@ -33,12 +36,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		0
 		)
 	</insert>
-	
+
 	<!-- 조회수 증가 -->
 	<update id="update_readhit" parameterType="int">
 		<!-- idx에 해당되는 게시글에 readhit을 1씩 증가 -->
 		update review set readhit = readhit + 1
 		where idx = #{idx}
+	</update>
+
+	<!-- 내용 수정 -->
+	<update id="review_update" parameterType="review">
+		update review set
+		subject = #{subject},
+		content = #{content},
+		regdate=sysdate
+		where idx=#{idx}
 	</update>
 
 </mapper>
