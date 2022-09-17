@@ -274,7 +274,7 @@ aside ul li a:hover, aside ul li a:visited:hover {
 	margin-left: 0;
 }
 
-.bt_wrap a.submit {
+.bt_wrap a, .bt_wrap a:hover {
 	background: #373737;
 	color: #fff;
 	text-decoration: none;

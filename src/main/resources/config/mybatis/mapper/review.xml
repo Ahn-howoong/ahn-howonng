@@ -5,12 +5,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="r">
 
 	<select id="review_list" resultType="review">
-		select * from review order by ref DESC
+		select * from review order
+		by ref DESC
 	</select>
-	
+
 	<!-- 상세보기 -->
 	<select id="review_one" parameterType="int" resultType="review">
-		select * from review where idx = #{idx}
+		select *
+		from review where idx = #{idx}
 	</select>
+
+	<!-- 새글 추가 -->
+	<insert id="review_insert" parameterType="review">
+		insert into review values(
+		seq_review_idx.nextVal,
+		#{id},
+		#{subject},
+		#{content},
+		#{ip},
+		sysdate,
+		#{title},
+		#{authors},
+		#{thumbnail},
+		0,
+		seq_review_idx.currVal,
+		0,
+		0
+		)
+	</insert>
 	
+	<!-- 조회수 증가 -->
+	<update id="update_readhit" parameterType="int">
+		<!-- idx에 해당되는 게시글에 readhit을 1씩 증가 -->
+		update review set readhit = readhit + 1
+		where idx = #{idx}
+	</update>
+
 </mapper>

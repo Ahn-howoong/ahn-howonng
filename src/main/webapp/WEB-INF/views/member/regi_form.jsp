@@ -62,7 +62,6 @@
 	   var address = f.address.value.trim();
 	   var detailAddress = f.detailAddress.value.trim();
 	   var addr = address + detailAddress;
-     console.log(id + pwd + name + email + tel + addr);
      
     
      // 오류 사전 체크 

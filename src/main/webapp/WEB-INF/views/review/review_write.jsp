@@ -57,6 +57,31 @@
 	function openWin() {
 		window.open("book_search.do", "진리도서관 :: 책 검색", "width=650, height=1000");
 	}
+	
+	function send(f) {
+		var subject = f.subject.value;
+		var thumbnail = f.thumbnail.value;
+		var content = f.content.value;
+		f.title.value = document.getElementById("bTitle").innerHTML;
+		f.authors.value = document.getElementById("bAuthors").innerHTML; 
+		
+		if(subject=='') {
+			alert("제목을 입력하세요");
+			return;
+		}
+		if(thumbnail=='') {
+			alert("책을 선택하세요");
+			return;
+		}
+		if(content=='') {
+			alert("내용을 입력하세요");
+			return;
+		}
+		
+		f.action = "review_insert.do";
+		f.method = "post";
+		f.submit();
+	}
 </script>
 </head>
 <body>
@@ -124,8 +149,6 @@
 		</div>
 
 		<div class="box">
-			<%-- <input value="${ title }"> --%>
-		
 			<aside>
 				<ul>
 					<li id="strong">나만의 도서관</li>
@@ -145,6 +168,7 @@
 					</div>
 				</div>
 				<div class="board_table">
+				<form id="board_tbl">
 					<table>
 						<colgroup>
 							<col width="15%;" />
@@ -155,7 +179,7 @@
 						<thead>
 							<tr>
 								<th><span>제목</span></th>
-								<td colspan="2"><input type="text" placeholder="제목 입력"></td>
+								<td colspan="2"><input type="text" placeholder="제목 입력" name="subject"></td>
 								<td><input type="button" class="btn-dark" id="search_btn"
 									value="책 검색" onclick="openWin();"></td>
 							</tr>
@@ -171,15 +195,19 @@
 							</tr>
 						</thead>
 						<tr>
-							<td colspan="4"><textarea placeholder="당신의 이야기를 들려주세요"></textarea>
+							<td colspan="4"><textarea placeholder="당신의 이야기를 들려주세요" name="content"></textarea>
 							</td>
 						</tr>
-						<input id="bThumbnail" type="hidden">
+						<input type="hidden" name="title" value="">
+						<input type="hidden" name="authors" value="">
+						<input type="hidden" name="id" value="${user.id}">
+						<input id="bThumbnail" type="hidden" name="thumbnail">
 					</table>
+					</form>
 				</div>
 				<div class="bt_wrap">
-					<a href="#" class="submit">등록</a> <a href="project.html"
-						class="submit">취소</a>
+					<a class="submit" href="javascript:send(document.getElementById('board_tbl'));">등록</a>
+					<a href="review.do" class="submit">취소</a>
 					<!-- 글 작성 게시판 마다 링크 바꿔야함-->
 				</div>
 

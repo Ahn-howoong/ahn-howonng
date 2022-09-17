@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,20 +145,12 @@
 							<hr>
 							<div class="cont">${vo.content}</div>
 							<hr>
-							<div class="view_tbl">
-								<table>
-									<tr>
-										<th>읽은 책</th>
-										<td>${vo.title}</td>
-									</tr>
-									<tr>
-										<th>작가</th>
-										<td>${vo.authors}</td>
-									</tr>
-									<tr>
-										<td colspan="2"><img src="${vo.thumbnail}"></td>
-									</tr>
-								</table>
+							<div class="book_info">
+								<img src="${vo.thumbnail}">
+								<div class="book_detail">
+									<b>읽은 책</b>&nbsp;|&nbsp;${vo.title}<br>
+									<b>작가</b>&nbsp;|&nbsp;${vo.authors}
+								</div>
 							</div>
 							<hr>
 							<div class="bt_wrap">

@@ -27,4 +27,16 @@ public class ReviewDAO {
 		return vo;
 	}
 
+	// 새글 추가
+	public int insert(ReviewVO vo) {
+		int res = sqlSession.insert("r.review_insert", vo);
+		return res;
+	}
+
+	// 조회수 증가
+	public int update_readhit(int idx) {
+		int res = sqlSession.update("r.update_readhit", idx);
+		return res;
+	}
+
 }
