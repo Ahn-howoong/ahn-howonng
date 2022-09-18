@@ -85,6 +85,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="check_login.jsp"/>
 	<div id="all">
 		<header>
 			<div class="box">

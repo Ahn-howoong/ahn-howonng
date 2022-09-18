@@ -139,8 +139,7 @@
 										<li><a href="review.html">나만의한줄평</a></li>
 										<li><a href="mbti.html">도서관NPC테스트</a></li>
 									</div>
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 					</nav>
 				</div>
@@ -175,21 +174,23 @@
 								&nbsp;|&nbsp; <b>${fn:split(vo.regdate, ' ')[0]}</b>
 							</span> <span>조회수 &nbsp;|&nbsp; <b>${vo.readhit}</b></span>
 							<hr>
-							<div class="cont"><pre style="font-size : 16px; font-family:'NanumSquare';">${vo.content}</pre></div>
+							<div class="cont">
+								<pre style="font-size: 16px; font-family: 'NanumSquare';">${vo.content}</pre>
+							</div>
 							<hr>
 							<div class="book_info">
 								<img src="${vo.thumbnail}">
 								<div class="book_detail">
-									<b>읽은 책</b>&nbsp;|&nbsp;${vo.title}<br>
-									<b>작가</b>&nbsp;|&nbsp;${vo.authors}
+									<b>읽은 책</b>&nbsp;|&nbsp;${vo.title}<br> <b>작가</b>&nbsp;|&nbsp;${vo.authors}
 								</div>
 							</div>
 							<hr>
 							<div class="bt_wrap">
-								<input type="button" value="수정"
-									onclick="location.href='review_modify.do?idx=${vo.idx}'">
-								<input type="button" value="삭제"
-									onclick="del(${vo.idx});">
+								<c:if test="${user.id} == ${vo.id}">
+									<input type="button" value="수정"
+										onclick="location.href='review_modify.do?idx=${vo.idx}'">
+									<input type="button" value="삭제" onclick="del(${vo.idx});">
+								</c:if>
 								<input type="button" value="목록"
 									onclick="location.href='review.do'">
 								<!-- 글 작성 게시판 마다 링크 바꿔야함-->

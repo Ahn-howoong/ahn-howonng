@@ -149,7 +149,7 @@
 </script>
 </head>
 <body>
-<jsp:include page="check_login.jsp"/>
+<jsp:include page="check_login_form.jsp"/>
     <div id="all">
       <header>
         <div class="box"> 
