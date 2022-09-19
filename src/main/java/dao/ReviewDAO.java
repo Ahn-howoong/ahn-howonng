@@ -16,9 +16,17 @@ public class ReviewDAO {
 	}
 
 	// 전체 게시글 조회
-	public List<ReviewVO> selectList(Map<String, Integer> map) {
+	public List<ReviewVO> selectList(Map<String, Object> map) {
 
-		List<ReviewVO> list = sqlSession.selectList("r.review_list", map);
+		List<ReviewVO> list;
+
+		System.out.println(map.get("search"));
+
+		if (map.get("search").equals("all")) {
+			list = sqlSession.selectList("r.review_list", map);
+		} else {
+			list = sqlSession.selectList("r.review_search", map);
+		}
 		return list;
 	}
 
@@ -55,8 +63,8 @@ public class ReviewDAO {
 	}
 
 	// 전체 게시물 수 조회
-	public int getRowTotal() {
-		int res = sqlSession.selectOne("r.review_count");
+	public int getRowTotal(Map<String, Object> map) {
+		int res = sqlSession.selectOne("r.review_count", map);
 		return res;
 	}
 

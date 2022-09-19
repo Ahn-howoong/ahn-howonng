@@ -10,6 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		r.* from review_vw r)
 		where no between #{start} and #{end}
 	</select>
+	
+	<select id="review_search" resultType="review"
+		parameterType="java.util.Map">
+		select RANK() OVER(order by idx) AS rank,
+		idx, subject, id, regdate, readhit FROM review
+		where subject like '%'|| #{search} ||'%'
+		order by rank DESC
+	</select>
 
 	<!-- 상세보기 -->
 	<select id="review_one" parameterType="int" resultType="review">
@@ -62,8 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<!-- 전체 게시물 수 -->
-	<select id="review_count" resultType="int">
-		select COUNT(*) from review
+	<select id="review_count" resultType="int" parameterType="java.util.Map">
+		select COUNT(*) from review where subject like '%'|| #{search} ||'%'
 	</select>
 
 </mapper>

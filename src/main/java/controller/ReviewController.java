@@ -33,7 +33,7 @@ public class ReviewController {
 
 	// 한줄평 메인 페이지 보이기
 	@RequestMapping("/review.do")
-	public String review(Model model, String page) {
+	public String review(Model model, String page, String search) {
 
 		int nowPage = 1;
 
@@ -47,15 +47,22 @@ public class ReviewController {
 		int end = start + Util.Review.BLOCKLIST - 1;
 
 		// map에 시작번호와 끝번호를 저장
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+
+		if (search == null) {
+			search = "all";
+		}
+		map.put("search", search);
+
+		System.out.println("controller : " + map.get("search"));
 
 		List<ReviewVO> list = review_dao.selectList(map);
 		model.addAttribute("list", list);
 
 		// 전체게시물 수 조회
-		int row_total = review_dao.getRowTotal();
+		int row_total = review_dao.getRowTotal(map);
 
 		// 하단에 표기될 페이지 메뉴 생성
 		String pageMenu = Paging.getPaging("review.do", nowPage, row_total, Util.Review.BLOCKLIST,
