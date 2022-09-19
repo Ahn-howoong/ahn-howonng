@@ -18,10 +18,6 @@ public class ReviewDAO {
 	// 전체 게시글 조회
 	public List<ReviewVO> selectList(Map<String, Integer> map) {
 
-		System.out.println("여긴 dao");
-		System.out.println("map start : " + map.get("start"));
-		System.out.println("map end : " + map.get("end"));
-
 		List<ReviewVO> list = sqlSession.selectList("r.review_list", map);
 		return list;
 	}

@@ -215,7 +215,7 @@
 									<c:if test="${vo.del_info eq 0}">
 										<tr>
 											<td>${vo.rank}</td>
-											<th><a href="review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
+											<th><a href="review_view.do?idx=${vo.idx}&page=${empty param.page ? 1 : param.page}">${vo.subject}</a></th>
 											<td>${vo.id}</td>
 											<td>${fn:split(vo.regdate, ' ')[0]}</td>
 											<td>${vo.readhit}</td>

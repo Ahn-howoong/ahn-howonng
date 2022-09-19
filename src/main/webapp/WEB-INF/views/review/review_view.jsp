@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +75,7 @@
     				return;
     			} else {
     				alert("삭제 완료되었습니다");
-    				location.href="review.do";
+    				location.href="review.do?page=${param.page}";
     			}
     			
     		}
@@ -186,13 +187,15 @@
 							</div>
 							<hr>
 							<div class="bt_wrap">
-								<c:if test="${user.id} eq ${vo.id}">
+
+							
+								<c:if test="${user.id eq vo.id}">
 									<input type="button" value="수정"
-										onclick="location.href='review_modify.do?idx=${vo.idx}'">
+										onclick="location.href='review_modify.do?idx=${vo.idx}&page=${param.page}'">
 									<input type="button" value="삭제" onclick="del(${vo.idx});">
 								</c:if>
 								<input type="button" value="목록"
-									onclick="location.href='review.do'">
+									onclick="location.href='review.do?page=${param.page}'">
 								<!-- 글 작성 게시판 마다 링크 바꿔야함-->
 							</div>
 						</div>

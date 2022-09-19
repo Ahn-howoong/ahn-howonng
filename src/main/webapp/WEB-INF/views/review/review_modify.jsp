@@ -70,7 +70,7 @@
 			return;
 		}
 		
-		f.action = "review_update.do";
+		f.action = "review_update.do?page=${param.page}";
 		f.method = "post";
 		f.submit();
 	}
@@ -199,7 +199,7 @@
 				</div>
 				<div class="bt_wrap">
 					<a class="submit" href="javascript:send(document.getElementById('board_tbl'));">저장</a>
-					<a href="review.do" class="submit">취소</a>
+					<a href="review.do?page=${param.page}" class="submit">취소</a>
 					<!-- 글 작성 게시판 마다 링크 바꿔야함-->
 				</div>
 			</div>

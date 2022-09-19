@@ -127,7 +127,7 @@ public class ReviewController {
 
 	// 수정하기
 	@RequestMapping("/review_update.do")
-	public String review_update(ReviewVO vo) {
+	public String review_update(ReviewVO vo, String page) {
 
 		// ip 가져오기
 		String ip = request.getRemoteAddr();
@@ -135,7 +135,7 @@ public class ReviewController {
 
 		int res = review_dao.update(vo);
 
-		return "redirect:review_view.do?idx=" + vo.getIdx();
+		return "redirect:review_view.do?idx=" + vo.getIdx() + "&page=" + page;
 	}
 
 	// 삭제 메서드
