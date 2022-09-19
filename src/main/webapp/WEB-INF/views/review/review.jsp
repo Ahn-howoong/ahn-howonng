@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -212,15 +212,22 @@
 							</thead>
 							<tbody>
 								<c:forEach var="vo" items="${list}">
-									<tr>
-										<td>${vo.rank}</td>
-										<th><a href="review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
-										<td>${vo.id}</td>
-										<td>${fn:split(vo.regdate, ' ')[0]}</td>
-										<td>${vo.readhit}</td>
-									</tr>
+									<c:if test="${vo.del_info eq 0}">
+										<tr>
+											<td>${vo.rank}</td>
+											<th><a href="review_view.do?idx=${vo.idx}">${vo.subject}</a></th>
+											<td>${vo.id}</td>
+											<td>${fn:split(vo.regdate, ' ')[0]}</td>
+											<td>${vo.readhit}</td>
+										</tr>
+									</c:if>
 								</c:forEach>
 							</tbody>
+							<tr>
+								<td colspan="5" align="center">
+								${pageMenu}
+								</td>
+							</tr>
 						</table>
 					</div>
 					<input type="button" class="btn btn-dark" id="write_btn"

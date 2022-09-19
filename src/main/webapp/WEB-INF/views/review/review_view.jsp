@@ -186,7 +186,7 @@
 							</div>
 							<hr>
 							<div class="bt_wrap">
-								<c:if test="${user.id} == ${vo.id}">
+								<c:if test="${user.id} eq ${vo.id}">
 									<input type="button" value="수정"
 										onclick="location.href='review_modify.do?idx=${vo.idx}'">
 									<input type="button" value="삭제" onclick="del(${vo.idx});">

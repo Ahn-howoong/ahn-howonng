@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -15,8 +16,13 @@ public class ReviewDAO {
 	}
 
 	// 전체 게시글 조회
-	public List<ReviewVO> selectList() {
-		List<ReviewVO> list = sqlSession.selectList("r.review_list");
+	public List<ReviewVO> selectList(Map<String, Integer> map) {
+
+		System.out.println("여긴 dao");
+		System.out.println("map start : " + map.get("start"));
+		System.out.println("map end : " + map.get("end"));
+
+		List<ReviewVO> list = sqlSession.selectList("r.review_list", map);
 		return list;
 	}
 
@@ -48,7 +54,13 @@ public class ReviewDAO {
 	// 게시글 삭제
 	public int delete(int idx) {
 		// idx는 파라미터 값이다.
-		int res = sqlSession.delete("r.review_delete", idx);
+		int res = sqlSession.update("r.review_delete", idx);
+		return res;
+	}
+
+	// 전체 게시물 수 조회
+	public int getRowTotal() {
+		int res = sqlSession.selectOne("r.review_count");
 		return res;
 	}
 

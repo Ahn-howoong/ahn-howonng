@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.ReviewDAO;
+import util.Paging;
+import util.Util;
 import vo.ReviewVO;
 
 @Controller
@@ -29,10 +33,35 @@ public class ReviewController {
 
 	// 한줄평 메인 페이지 보이기
 	@RequestMapping("/review.do")
-	public String review(Model model) {
+	public String review(Model model, String page) {
 
-		List<ReviewVO> list = review_dao.selectList();
+		int nowPage = 1;
+
+		if (page != null) {
+			nowPage = Integer.parseInt(page);
+		}
+
+		// 한 페이지에 표시될 게시물의 시작과 끝 번호를 계산
+		// ?page=1
+		int start = (nowPage - 1) * Util.Review.BLOCKLIST + 1;
+		int end = start + Util.Review.BLOCKLIST - 1;
+
+		// map에 시작번호와 끝번호를 저장
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<ReviewVO> list = review_dao.selectList(map);
 		model.addAttribute("list", list);
+
+		// 전체게시물 수 조회
+		int row_total = review_dao.getRowTotal();
+
+		// 하단에 표기될 페이지 메뉴 생성
+		String pageMenu = Paging.getPaging("review.do", nowPage, row_total, Util.Review.BLOCKLIST,
+				Util.Review.BLOCKPAGE);
+
+		model.addAttribute("pageMenu", pageMenu);
 
 		// show라는 이름으로 저장된 값을 제거
 		request.getSession().removeAttribute("show");
@@ -113,6 +142,7 @@ public class ReviewController {
 	@RequestMapping("/review_delete.do")
 	@ResponseBody // return 값을 jsp 등으로 인식하지 않고, 콜백메서드로 전달하기 위한 키워드
 	public String delete(int idx) {
+
 		int res = review_dao.delete(idx);
 
 		String result = "no";

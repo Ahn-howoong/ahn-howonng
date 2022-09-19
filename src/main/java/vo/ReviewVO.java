@@ -1,7 +1,7 @@
 package vo;
 
 public class ReviewVO {
-	private int idx, readhit, ref, step, depth, rank;
+	private int idx, readhit, ref, step, depth, rank, del_info;
 	private String id, subject, content, ip, regdate, title, authors, thumbnail;
 
 	public int getIdx() {
@@ -50,6 +50,14 @@ public class ReviewVO {
 
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+
+	public int getDel_info() {
+		return del_info;
+	}
+
+	public void setDel_info(int del_info) {
+		this.del_info = del_info;
 	}
 
 	public String getId() {
