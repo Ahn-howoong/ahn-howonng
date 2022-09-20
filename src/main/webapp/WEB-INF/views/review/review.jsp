@@ -102,13 +102,18 @@
 			});
 	
 	function s_search() {
+		
+		var target = document.getElementById("select");
+		
+		var select = target.options[target.selectedIndex].value;
+		
 		var search = document.getElementById("search").value.trim();
 		if (search == '') {
 			// search에 값이 비어있으면 gogaeklist.do?search= 이렇게만 넘어가므로
 			// gogaeklist.do?search=all로 넘어갈 수 있도록 해준다.
 			search = 'all';
 		}
-		location.href = "review.do?page=${empty param.page ? 1 : param.page}&search=" + search;
+		location.href = "review.do?page=${empty param.page ? 1 : param.page}&search=" + search + "&select=" + select;
 	}
 </script>
 </head>
@@ -198,10 +203,11 @@
 						<div class="search-window">
 							<form action="">
 								<div class="search-wrap">
-								<select name="select">
-									<option value="bname" selected="selected">책</option>
-									<option value="bcontent">내용</option>
-									<option value="ball">책+내용</option>
+								<select id="select">
+									<option value="title" selected="selected">책</option>
+									<option value="subject">제목</option>
+									<option value="content">내용</option>
+									<option value="all">전체</option>
 								</select>
 									<input id="search" type="search" name=""
 										placeholder="검색어를 입력해주세요." value="">

@@ -33,7 +33,7 @@ public class ReviewController {
 
 	// 한줄평 메인 페이지 보이기
 	@RequestMapping("/review.do")
-	public String review(Model model, String page, String search) {
+	public String review(Model model, String page, String search, String select) {
 
 		int nowPage = 1;
 
@@ -51,13 +51,26 @@ public class ReviewController {
 		map.put("start", start);
 		map.put("end", end);
 
+		// map에 search 값 넣기
 		if (search == null) {
 			search = "all";
 		}
 		map.put("search", search);
 
-		System.out.println("controller : " + map.get("search"));
-
+		// map에 조회할 컬럼 넣기
+		if (select == null) {
+			map.put("title", "title");
+			map.put("subject", "subject");
+			map.put("content", "content");
+		} else {
+			if (select.equals("title")) {
+				map.put("title", "title");
+			} else if (select.equals("subject")) {
+				map.put("subject", "subject");
+			} else if (select.equals("content")) {
+				map.put("content", "content");
+			}
+		}
 		List<ReviewVO> list = review_dao.selectList(map);
 		model.addAttribute("list", list);
 

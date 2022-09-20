@@ -2,7 +2,7 @@ package vo;
 
 public class ReviewVO {
 	private int idx, readhit, ref, step, depth, rank, del_info;
-	private String id, subject, content, ip, regdate, title, authors, thumbnail;
+	private String id, subject, content, ip, regdate, title, authors, thumbnail, all;
 
 	public int getIdx() {
 		return idx;
@@ -122,6 +122,14 @@ public class ReviewVO {
 
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+
+	public String getAll() {
+		return all;
+	}
+
+	public void setAll(String all) {
+		this.all = all;
 	}
 
 }

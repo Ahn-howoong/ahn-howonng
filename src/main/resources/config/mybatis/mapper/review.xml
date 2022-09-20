@@ -15,7 +15,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="java.util.Map">
 		select RANK() OVER(order by idx) AS rank,
 		idx, subject, id, regdate, readhit FROM review
-		where subject like '%'|| #{search} ||'%'
+		
+		<trim prefix="where" prefixOverrides="or/and">
+		<if test="title!=null">
+			title like '%'|| #{search} ||'%'
+		</if>
+		<if test="subject!=null">
+			subject like '%'|| #{search} ||'%'
+		</if>
+		<if test="content!=null">
+			content like '%'|| #{search} ||'%'
+		</if>
+		<if test="all!=null">
+			title like '%'|| #{search} ||'%'
+			or subject like '%'|| #{search} ||'%'
+			or content like '%'|| #{search} ||'%'
+		</if>
+		</trim>
 		order by rank DESC
 	</select>
 
@@ -71,7 +87,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 전체 게시물 수 -->
 	<select id="review_count" resultType="int" parameterType="java.util.Map">
-		select COUNT(*) from review where subject like '%'|| #{search} ||'%'
+		select COUNT(*) from review
+	</select>
+	
+	<!-- 검색시 게시물 수 -->
+	<select id="review_s_count" resultType="int" parameterType="java.util.Map">
+		select COUNT(*) FROM review
+		
+		<trim prefix="where" prefixOverrides="or/and">
+		<if test="title!=null">
+			title like '%'|| #{search} ||'%'
+		</if>
+		<if test="subject!=null">
+			subject like '%'|| #{search} ||'%'
+		</if>
+		<if test="content!=null">
+			content like '%'|| #{search} ||'%'
+		</if>
+		<if test="all!=null">
+			title like '%'|| #{search} ||'%'
+			or subject like '%'|| #{search} ||'%'
+			or content like '%'|| #{search} ||'%'
+		</if>
+		</trim>
 	</select>
 
 </mapper>

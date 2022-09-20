@@ -20,11 +20,12 @@ public class ReviewDAO {
 
 		List<ReviewVO> list;
 
-		System.out.println(map.get("search"));
-
 		if (map.get("search").equals("all")) {
+			System.out.print("s:" + map.get("start"));
+			System.out.print("e:" + map.get("end"));
 			list = sqlSession.selectList("r.review_list", map);
 		} else {
+			System.out.print("t2:" + map.get("search"));
 			list = sqlSession.selectList("r.review_search", map);
 		}
 		return list;
@@ -64,7 +65,15 @@ public class ReviewDAO {
 
 	// 전체 게시물 수 조회
 	public int getRowTotal(Map<String, Object> map) {
-		int res = sqlSession.selectOne("r.review_count", map);
+
+		int res;
+
+		if (map.get("search").equals("all")) {
+			res = sqlSession.selectOne("r.review_count", map);
+		} else {
+			res = sqlSession.selectOne("r.review_s_count", map);
+		}
+
 		return res;
 	}
 
