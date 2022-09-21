@@ -2,7 +2,7 @@ package vo;
 
 public class ReviewVO {
 	private int idx, readhit, ref, step, depth, rank, del_info;
-	private String id, subject, content, ip, regdate, title, authors, thumbnail, all;
+	private String id, subject, content, ip, regdate, title, authors, thumbnail, all, month;
 
 	public int getIdx() {
 		return idx;
@@ -130,6 +130,14 @@ public class ReviewVO {
 
 	public void setAll(String all) {
 		this.all = all;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
 }

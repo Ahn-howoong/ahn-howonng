@@ -111,5 +111,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		</trim>
 	</select>
+	
+	<!-- 게시물수 조회 -->
+	<select id="monthCount" parameterType="String" resultType="int">
+		select COUNT(*) from review
+		where TO_CHAR(regdate,'MM') = #{month}
+		and TO_CHAR(regdate,'YYYY') = TO_CHAR(SYSDATE,'YYYY')
+	</select>
 
 </mapper>

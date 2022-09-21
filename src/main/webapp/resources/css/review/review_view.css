@@ -229,6 +229,7 @@ aside ul li a {
 aside ul li a:hover, aside ul li a:visited:hover {
 	background: #f7eecd;
 	color: #000;
+	text-decoration: none;
 }
 
 /*css 시작 */
@@ -293,8 +294,8 @@ span b {
 }
 
 .cont {
-	min-height: 250px;
-	font-family: 'NanumSquare';
+	overflow-y: scroll; 
+    height:250px;
 }
 
 #location h2 {

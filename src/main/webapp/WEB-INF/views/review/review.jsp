@@ -67,13 +67,31 @@
 				});
 				// 차트
 				var ctx = document.getElementById('myChart');
+				
+				// 월 구하기
+				var now = new Date();
+				var months = [];
+				
+				var test = 12;
+				for (let i = 0; i < 6; i++){
+					
+					month = new Date(now.setMonth(now.getMonth()));	
+				    result = (month.getMonth() + 1);
+
+					months[i] = result - i;
+					if(months[i] <= 0){
+						months[i] = test--;
+					}
+					months[i] += "월";
+				}
+
 				var myChart = new Chart(ctx, {
 					type : 'bar',
 					data : {
-						labels : [ '1월', '2월', '3월', '4월', '5월', '6월' ],
+						labels : [ months[5], months[4], months[3], months[2], months[1], months[0] ],
 						datasets : [ {
 							label : '매달 공유된 한줄평',
-							data : [ 2, 5, 7, 11, 8, 4 ],
+							data : [ "${count_list[5]}", "${count_list[4]}", "${count_list[3]}", "${count_list[2]}", "${count_list[1]}", "${count_list[0]}" ],
 							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
 									'rgba(255, 206, 86, 0.2)',
@@ -131,7 +149,7 @@
 					</ul>
 				</nav>
 				<div id="logo">
-					<a href="index.html"><img
+					<a href="main.do"><img
 						src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
 				</div>
 			</div>

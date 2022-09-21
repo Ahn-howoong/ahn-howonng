@@ -82,6 +82,12 @@
     	}
 
 </script>
+<style>
+.cont {
+	overflow-y: auto;
+	height: 250px;
+}
+</style>
 </head>
 <body>
 	<div id="all">

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,18 +48,18 @@ public class ReviewController {
 		int start = (nowPage - 1) * Util.Review.BLOCKLIST + 1;
 		int end = start + Util.Review.BLOCKLIST - 1;
 
-		// map에 시작번호와 끝번호를 저장
+		// 검색 - map에 시작번호와 끝번호를 저장
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 
-		// map에 search 값 넣기
+		// 검색 - map에 search 값 넣기
 		if (search == null) {
 			search = "all";
 		}
 		map.put("search", search);
 
-		// map에 조회할 컬럼 넣기
+		// 검색 - map에 조회할 컬럼 넣기
 		if (select == null) {
 			map.put("title", "title");
 			map.put("subject", "subject");
@@ -71,6 +73,7 @@ public class ReviewController {
 				map.put("content", "content");
 			}
 		}
+
 		List<ReviewVO> list = review_dao.selectList(map);
 		model.addAttribute("list", list);
 
@@ -82,6 +85,31 @@ public class ReviewController {
 				Util.Review.BLOCKPAGE);
 
 		model.addAttribute("pageMenu", pageMenu);
+
+		// 그래프 - 달 구하기
+		Calendar now = Calendar.getInstance();
+		int[] months = new int[6];
+		int test = 12;
+		List<Integer> count_list = new ArrayList<Integer>();
+		;
+
+		for (int i = 0; i < 6; i++) {
+
+			int month = now.get(Calendar.MONTH) + 1;
+
+			months[i] = month - i;
+			if (months[i] <= 0) {
+				months[i] = test--;
+			}
+		}
+
+		// 최근 6개월 간 한줄평 작성 수 구하기
+		for (int i = 0; i < 6; i++) {
+			int count = review_dao.monthCount(months[i]);
+			count_list.add(count);
+
+		}
+		model.addAttribute("count_list", count_list);
 
 		// show라는 이름으로 저장된 값을 제거
 		request.getSession().removeAttribute("show");

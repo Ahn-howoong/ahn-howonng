@@ -21,11 +21,8 @@ public class ReviewDAO {
 		List<ReviewVO> list;
 
 		if (map.get("search").equals("all")) {
-			System.out.print("s:" + map.get("start"));
-			System.out.print("e:" + map.get("end"));
 			list = sqlSession.selectList("r.review_list", map);
 		} else {
-			System.out.print("t2:" + map.get("search"));
 			list = sqlSession.selectList("r.review_search", map);
 		}
 		return list;
@@ -73,6 +70,22 @@ public class ReviewDAO {
 		} else {
 			res = sqlSession.selectOne("r.review_s_count", map);
 		}
+
+		return res;
+	}
+
+	// 월별 게시물 수 조회
+	public int monthCount(int months) {
+
+		String month = null;
+
+		if (months < 10) {
+			month = "0" + months;
+		} else {
+			month = String.valueOf(months);
+		}
+
+		int res = sqlSession.selectOne("r.monthCount", month);
 
 		return res;
 	}

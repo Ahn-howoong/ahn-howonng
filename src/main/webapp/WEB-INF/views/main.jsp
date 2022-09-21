@@ -179,7 +179,7 @@
 									<div>
 										<li><a href="checkout_return.html">도서대출현황</a></li>
 										<li><a href="book_request.html">희망도서신청</a></li>
-										<li><a href="review.html">나만의한줄평</a></li>
+										<li><a href="review.do">나만의한줄평</a></li>
 										<li><a href="mbti.html">도서관NPC테스트</a></li>
 									</div>
 								</ul></li>
@@ -244,8 +244,8 @@
 								</form>
 							</div>
 							<div class="mypage">
-								<img align="center"
-									src="${pageContext.request.contextPath}/resources/img/review_icon.png">
+								<a href="review.do"><img align="center"
+									src="${pageContext.request.contextPath}/resources/img/review_icon.png"></a>
 							</div>
 						</c:otherwise>
 					</c:choose>
