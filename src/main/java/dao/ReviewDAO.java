@@ -24,6 +24,8 @@ public class ReviewDAO {
 			list = sqlSession.selectList("r.review_list", map);
 		} else {
 			list = sqlSession.selectList("r.review_search", map);
+			System.out.println(map.get("start"));
+			System.out.println(map.get("end"));
 		}
 		return list;
 	}
@@ -64,7 +66,7 @@ public class ReviewDAO {
 	public int getRowTotal(Map<String, Object> map) {
 
 		int res;
-
+		System.out.println(map.get("search"));
 		if (map.get("search").equals("all")) {
 			res = sqlSession.selectOne("r.review_count", map);
 		} else {

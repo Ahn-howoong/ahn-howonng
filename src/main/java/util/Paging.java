@@ -7,7 +7,8 @@ package util;
         blockPage:한화면에 나타낼 페이지 메뉴 수
  */
 public class Paging {
-	public static String getPaging(String pageURL, int nowPage, int rowTotal, int blockList, int blockPage) {
+	public static String getPaging(String pageURL, int nowPage, int rowTotal, int blockList, int blockPage,
+			String search, String select) {
 
 		int totalPage/* 전체페이지수 */, startPage/* 시작페이지번호 */, endPage;/* 마지막페이지번호 */
 
@@ -47,7 +48,7 @@ public class Paging {
 		if (isPrevPage) {
 			sb.append("<a href ='" + pageURL + "?page=");
 			// sb.append(nowPage - blockPage);
-			sb.append(startPage - 1);
+			sb.append(startPage - 1 + "&search=" + search + "&select=" + select);
 			sb.append("'>◀</a>");
 		} else
 			sb.append("◀");
@@ -64,7 +65,7 @@ public class Paging {
 			} else {// 현재 페이지가 아니면
 				sb.append("&nbsp;<a href='" + pageURL + "?page=");
 				sb.append(i);
-				sb.append("'>");
+				sb.append("&search=" + search + "&select=" + select + "'>");
 				sb.append(i);
 				sb.append("</a>");
 			}
@@ -76,7 +77,7 @@ public class Paging {
 		if (isNextPage) {
 			sb.append("<a href='" + pageURL + "?page=");
 
-			sb.append(endPage + 1);
+			sb.append(endPage + 1 + "&search=" + search + "&select=" + select);
 			/*
 			 * if(nowPage+blockPage > totalPage)nowPage = totalPage; else nowPage =
 			 * nowPage+blockPage; sb.append(nowPage);

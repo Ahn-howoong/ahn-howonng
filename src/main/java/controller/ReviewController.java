@@ -80,9 +80,12 @@ public class ReviewController {
 		// 전체게시물 수 조회
 		int row_total = review_dao.getRowTotal(map);
 
+		System.out.println("nowPage" + nowPage);
+		System.out.println("row_total" + row_total);
+
 		// 하단에 표기될 페이지 메뉴 생성
 		String pageMenu = Paging.getPaging("review.do", nowPage, row_total, Util.Review.BLOCKLIST,
-				Util.Review.BLOCKPAGE);
+				Util.Review.BLOCKPAGE, search, select);
 
 		model.addAttribute("pageMenu", pageMenu);
 

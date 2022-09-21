@@ -13,25 +13,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="review_search" resultType="review"
 		parameterType="java.util.Map">
-		select RANK() OVER(order by idx) AS rank,
-		idx, subject, id, regdate, readhit FROM review
-		
-		<trim prefix="where" prefixOverrides="or/and">
+		select * from
+		(select rank() over(order by ref desc, step asc) no,
+		r.* from review_vw r
+		where 
 		<if test="title!=null">
-			title like '%'|| #{search} ||'%'
+			title like '%'|| #{search} ||'%')
 		</if>
 		<if test="subject!=null">
-			subject like '%'|| #{search} ||'%'
+			subject like '%'|| #{search} ||'%')
 		</if>
 		<if test="content!=null">
-			content like '%'|| #{search} ||'%'
+			content like '%'|| #{search} ||'%')
 		</if>
 		<if test="all!=null">
 			title like '%'|| #{search} ||'%'
 			or subject like '%'|| #{search} ||'%'
-			or content like '%'|| #{search} ||'%'
+			or content like '%'|| #{search} ||'%')
 		</if>
-		</trim>
+		where no between #{start} and #{end}
 		order by rank DESC
 	</select>
 
