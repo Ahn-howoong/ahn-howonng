@@ -15,6 +15,7 @@
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
 		<mapper resource="config/mybatis/mapper/review.xml" />
+		<mapper resource="config/mybatis/mapper/search.xml" />
 	</mappers>
 </configuration>
 

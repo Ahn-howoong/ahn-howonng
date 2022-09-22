@@ -40,6 +40,11 @@
 		class="controller.ReviewController">
 		<beans:property name="review_dao" ref="review_daoBean" />
 	</beans:bean>
+	
+	<beans:bean id="search_controller"
+		class="controller.SearchController">
+		<beans:property name="search_dao" ref="search_daoBean" />
+	</beans:bean>
 
 </beans:beans>
 
