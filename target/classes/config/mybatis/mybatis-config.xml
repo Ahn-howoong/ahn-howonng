@@ -10,6 +10,7 @@
 	
 	<typeAliases>
 		<typeAlias type="vo.ReviewVO" alias="review"/>
+		<typeAlias type="vo.SearchVO" alias="search"/>
 	</typeAliases>
 	
 	<mappers>
