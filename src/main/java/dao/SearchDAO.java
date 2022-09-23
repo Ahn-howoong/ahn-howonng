@@ -34,4 +34,10 @@ public class SearchDAO {
 
 		return res;
 	}
+
+	// 찜하기 추가
+	public int wish(SearchVO vo) {
+		int res = sqlSession.insert("s.wish_insert", vo);
+		return res;
+	}
 }

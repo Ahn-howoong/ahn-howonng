@@ -97,8 +97,20 @@ public class SearchController {
 
 	@RequestMapping("/wish.do")
 	@ResponseBody
-	public String wish(Model model) {
+	public String wish(Model model, String id, String reginum) {
 
+		SearchVO vo = new SearchVO();
+		vo.setId(id);
+		vo.setReginum(reginum);
+
+		int res = search_dao.wish(vo);
+
+		String result = "no";
+		if (res == 1) {
+			result = "yes";
+		}
+
+		return result;
 	}
 
 }

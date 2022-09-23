@@ -17,47 +17,93 @@
 	rel="stylesheet">
 <title>진리도서관 :: 책 정보</title>
 <script type="text/javascript">
-$(document).ready(function () {
-    $(".nav_container nav ul li").mouseenter(function (e) {
-        $(".nav_container nav ul li a").siblings(".nav_dropdown").show();
-    });
+	$(document)
+			.ready(
+					function() {
+						$(".nav_container nav ul li").mouseenter(
+								function(e) {
+									$(".nav_container nav ul li a").siblings(
+											".nav_dropdown").show();
+								});
 
-    $("nav").mouseleave(function () {
-        $(".nav_dropdown").hide();
-    });
+						$("nav").mouseleave(function() {
+							$(".nav_dropdown").hide();
+						});
 
-    $(".nav_dropdown div").mouseenter(function () {
-        $(this).parentsUntil("li").parent().css("background-color", "#ffe695");
-    });
+						$(".nav_dropdown div").mouseenter(
+								function() {
+									$(this).parentsUntil("li").parent().css(
+											"background-color", "#ffe695");
+								});
 
-    $(".nav_dropdown div").mouseleave(function () {
-        $(this).parentsUntil("li").parent().css("background-color", "#fff");
-    });
-    
-    <c:forEach var="vo" items="${list}">
-    $.ajax({
-        method: "GET",
-        url: "https://dapi.kakao.com/v3/search/book",
-        data: { query: "${vo.bname}" },
-        headers: { Authorization: "KakaoAK 8e4c9f81d06f13ce398748177abb8d35" }
-    })
-        .done(function (msg) {
-            	
-                var thumbnail = msg.documents[0].thumbnail;      
-                var publisher = msg.documents[0].publisher;
-                var isbn = msg.documents[0].isbn;
-                var contents = msg.documents[0].contents.substr(0, 97);
-                
-                document.getElementById("thumbnail").src = msg.documents[0].thumbnail;
-                document.getElementById("thumbnail2").src = msg.documents[0].thumbnail;
-                document.getElementById("publisher").innerHTML = msg.documents[0].publisher;
-                document.getElementById("isbn").innerHTML = msg.documents[0].isbn;
-                document.getElementById("contents").innerHTML = msg.documents[0].contents;
-        });
-    </c:forEach>
+						$(".nav_dropdown div").mouseleave(
+								function() {
+									$(this).parentsUntil("li").parent().css(
+											"background-color", "#fff");
+								});
 
-});
+						<c:forEach var="vo" items="${list}">
+						$
+								.ajax(
+										{
+											method : "GET",
+											url : "https://dapi.kakao.com/v3/search/book",
+											data : {
+												query : "${vo.bname}"
+											},
+											headers : {
+												Authorization : "KakaoAK 8e4c9f81d06f13ce398748177abb8d35"
+											}
+										})
+								.done(
+										function(msg) {
 
+											var thumbnail = msg.documents[0].thumbnail;
+											var publisher = msg.documents[0].publisher;
+											var isbn = msg.documents[0].isbn;
+											var contents = msg.documents[0].contents
+													.substr(0, 97);
+
+											document
+													.getElementById("thumbnail").src = msg.documents[0].thumbnail;
+											document
+													.getElementById("thumbnail2").src = msg.documents[0].thumbnail;
+											document
+													.getElementById("publisher").innerHTML = msg.documents[0].publisher;
+											document.getElementById("isbn").innerHTML = msg.documents[0].isbn;
+											document.getElementById("contents").innerHTML = msg.documents[0].contents;
+										});
+						</c:forEach>
+
+					});
+	function wish(f) {
+
+		<c:if test="${empty user}">
+		alert("로그인 후 이용할 수 있습니다.");
+		return;
+		</c:if>
+
+		var url = "wish.do";
+		console.log(f.id.value);
+		var param = "id=" + f.id.value + "&reginum=" + f.reginum.value;
+		sendRequest(url, param, resultFunc, "Post"); // 넘어갈 url, 파라미터, 콜백함수, 전송방식
+	}
+
+	function resultFunc() {
+
+		if (xhr.readyState == 4 && xhr.status == 200) {
+
+			var data = xhr.responseText;
+
+			if (data == 'no') {
+				alert("관심도서 담기에 실패했습니다.");
+				return;
+			} else {
+				alert("관심도서에 담았습니다. ");
+			}
+
+		}
+	}
 </script>
 </head>
 <body>
@@ -134,63 +180,56 @@ $(document).ready(function () {
 			</aside>
 			<section class="main">
 				<c:forEach var="vo" items="${list}">
-				<h1 style="font-size: 32px;">통합검색</h1>
-				<div class="loc_history">
-					홈 &nbsp;>&nbsp; 통합검색 &nbsp;> &nbsp; <b> 상세페이지 </b>
-				</div>
-				<div>
-					<ul class="book_box">
-						<li><img src="" class="book_size" id="thumbnail">
-							<dl class="font_height">
-								<dt>${vo.bname}</dt>
-								<dd>ISBN : <span id="isbn"></span></dd>
-								<dd>저자 : ${vo.author}</dd>
-								<dd>발행년도 : ${vo.pdate}</dd>
-								<dd>출판사 : <span id="publisher"></span></dd>
-								<dd>등록번호 : ${vo.reginum}</dd>
-							</dl></li>
-					</ul>
-				</div>
-				<div>
-					<h2>소장 위치</h2>
-					<table>
-						<tr>
-							<th>기관명</th>
-							<th>자료실명</th>
-							<th>등록번호</th>
-							<th>도서상태</th>
-							<th>대출예약</th>
-						</tr>
-						<tr>
-							<td>진리도서관</td>
-							<td>종합자료실 4관</td>
-							<td>EMA00884</td>
-							<td>대출가능</td>
-							<td><input type="button" value="예약신청" id="btn"></td>
-						</tr>
-						<tr>
-							<td>진리도서관</td>
-							<td>종합자료실 2관</td>
-							<td>MAZ00666</td>
-							<td>대출가능</td>
-							<td><input type="button" value="예약신청" id="btn"></td>
-						</tr>
-						<tr>
-							<td>진리도서관</td>
-							<td>종합자료실 1관</td>
-							<td>ETA09914</td>
-							<td>대출불가</td>
-							<td><input type="button" value="예약불가" id="btn"></td>
-						</tr>
-					</table>
-				</div>
+					<h1 style="font-size: 32px;">통합검색</h1>
+					<div class="loc_history">
+						홈 &nbsp;>&nbsp; 통합검색 &nbsp;> &nbsp; <b> 상세페이지 </b>
+					</div>
+					<div>
+						<ul class="book_box">
+							<li><img src="" class="book_size" id="thumbnail">
+								<dl class="font_height">
+									<dt>${vo.bname}</dt>
+									<dd>저자 : ${vo.author}</dd>
+									<dd>발행년도 : ${vo.pdate}</dd>
+									<dd>
+										출판사 : <span id="publisher"></span>
+									</dd>
+									<dd>
+										ISBN : <span id="isbn"></span>
+									</dd>
+									<dd>등록번호 : ${vo.reginum}</dd>
+								</dl></li>
+						</ul>
+					</div>
+					<div>
+						<h2>소장 위치</h2>
+						<table>
+							<tr>
+								<th>기관명</th>
+								<th>자료실명</th>
+								<th>등록번호</th>
+								<th>도서상태</th>
+								<th>대출예약</th>
+							</tr>
+							<tr>
+								<td>진리도서관</td>
+								<td>종합자료실</td>
+								<td>${vo.reginum}</td>
+								<td>대출가능</td>
+								<td><input type="button" value="예약불가" id="btn"></td>
+							</tr>
+						</table>
+					</div>
+
+					<div style="text-align: center;">
+						<form>
+							<input type="hidden" name="id" value="${user.id}">
+							<input type="hidden" name="reginum" value="${vo.reginum}">
+							<input type="button" id="heart" value="관심도서담기" onclick="wish(this.form);">
+						</form>
+					</div>
 				</c:forEach>
-				<div style="text-align: center;">
-					<button id="heart">관심도서담기</button>
-				</div>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br>
 				<div id="red_box">
 					<button id="red">예약/신청 안내</button>
 					<p id="red_text">도서상태가 대출중 도서의 경우 예약 가능하며 보존서고 도서의 경우 도서상태가
@@ -205,7 +244,8 @@ $(document).ready(function () {
 							</dl></li>
 					</ul>
 					<div style="text-align: center;">
-						<input type="button" id="heart" value="돌아가기" onclick="location.href='search.do'">
+						<input type="button" id="heart" value="돌아가기"
+							onclick="location.href='search.do'">
 					</div>
 				</div>
 			</section>

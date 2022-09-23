@@ -44,10 +44,7 @@
 		
 				var str = "";
 				
-				<c:forEach var="vo" items="${list}">
-					
-				
-									
+				<c:forEach var="vo" items="${list}">					
 					$.ajax({
 	                    method: "GET",
 	                    url: "https://dapi.kakao.com/v3/search/book",
@@ -67,12 +64,8 @@
 	                            str += '...</dd></dl></li></ul>';
 	                            
 	                            document.getElementById("book_div").innerHTML = str;
-	                           
 	                    });
 					</c:forEach>
-					
-					
-				
 			});
 	
 		

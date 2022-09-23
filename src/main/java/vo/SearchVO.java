@@ -1,7 +1,7 @@
 package vo;
 
 public class SearchVO {
-	private String bname, reginum, author, pdate, page, division_detail;
+	private String bname, reginum, author, pdate, page, division_detail, id;
 	private int division;
 
 	public String getBname() {
@@ -50,6 +50,14 @@ public class SearchVO {
 
 	public void setDivision_detail(String division_detail) {
 		this.division_detail = division_detail;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getDivision() {

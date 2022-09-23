@@ -49,5 +49,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{search} ||'%'
 		</if>
 	</select>
+	
+	<!-- 위시 추가하기 -->
+	<insert id="wish_insert" parameterType="search">
+		insert into wish
+		values(
+		#{id},
+		#{reginum}
+		)
+	</insert>
 
 </mapper>
