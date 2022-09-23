@@ -1,14 +1,26 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.SearchDAO;
+import util.Paging;
 import util.Util;
+import vo.SearchVO;
 
 @Controller
 public class SearchController {
+
+	@Autowired
+	HttpServletRequest request;
 
 	SearchDAO search_dao;
 
@@ -17,7 +29,52 @@ public class SearchController {
 	}
 
 	@RequestMapping("/search.do")
-	public String search(Model model) {
+	public String search(Model model, String page, String search, String select) {
+
+		int nowPage = 1;
+
+		if (page != null) {
+			nowPage = Integer.parseInt(page);
+		}
+
+		int start = (nowPage - 1) * Util.Review.BLOCKLIST + 1;
+		int end = start + Util.Review.BLOCKLIST - 1;
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search", search);
+
+		List<SearchVO> list;
+
+		// 검색 - map에 조회할 컬럼 넣기
+		if (search != null) {
+			if (select == null) {
+				map.put("bname", "bname");
+				map.put("author", "author");
+			} else {
+				if (select.equals("bname")) {
+					map.put("bname", "bname");
+				} else if (select.equals("author")) {
+					map.put("author", "author");
+				} else if (select.equals("all")) {
+					map.put("all", "all");
+				}
+			}
+			list = search_dao.selectList(map);
+			model.addAttribute("list", list);
+
+			// 전체게시물 수 조회
+			int row_total = search_dao.getRowTotal(map);
+
+			if (row_total > 0) {
+				// 하단에 표기될 페이지 메뉴 생성
+				String pageMenu = Paging.getPaging("search.do", nowPage, row_total, Util.Search.BLOCKLIST,
+						Util.Search.BLOCKPAGE, search, select);
+
+				model.addAttribute("pageMenu", pageMenu);
+			}
+		}
 
 		return Util.Search.VIEW_PATH + "search.jsp";
 	}
