@@ -58,14 +58,13 @@
 	                       
 	                    	// console.log(${list.size()});
 	                    	
-	                        	str += '<ul class="book_box"><li><img src="';
+	                        	str += '<ul class="book_box"><li><a href="book_info.do?search=${vo.bname}"><img src="';
 	                            str += msg.documents[0].thumbnail;      
-	                            str += '" class="book_size"><dl><dt><a href="book_info.html">${vo.bname}</a></dt><dd><span>저자</span> ${vo.author}</dd><dd><span>출판사</span>'; 
+	                            str += '" class="book_size"></a><dl><dt><a href="book_info.do?search=${vo.bname}">${vo.bname}</a></dt><dd><span>저자</span> ${vo.author}</dd><dd><span>출판사</span>'; 
 	                            str += msg.documents[0].publisher;
 	                            str += '</dd><dd><span>발행연도</span> ${vo.pdate}</dd><dd id="bottom_line"><span>등록번호</span> ${vo.reginum}</dd><dd>';
 	                            str += msg.documents[0].contents.substr(0, 97);
 	                            str += '...</dd></dl></li></ul>';
-	                            console.log(str);
 	                            
 	                            document.getElementById("book_div").innerHTML = str;
 	                           
@@ -208,7 +207,7 @@
 						</ul>
 					</c:forEach> --%>
 				</div>
-				<div id="pageMenu" style="marign:30px auto;">
+				<div id="pageMenu">
 					<c:if test="${!empty pageMenu}">
                 		<p>${pageMenu}</p>
                 	</c:if>

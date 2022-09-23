@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.SearchDAO;
 import util.Paging;
@@ -37,8 +38,8 @@ public class SearchController {
 			nowPage = Integer.parseInt(page);
 		}
 
-		int start = (nowPage - 1) * Util.Review.BLOCKLIST + 1;
-		int end = start + Util.Review.BLOCKLIST - 1;
+		int start = (nowPage - 1) * Util.Search.BLOCKLIST + 1;
+		int end = start + Util.Search.BLOCKLIST - 1;
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
@@ -77,6 +78,27 @@ public class SearchController {
 		}
 
 		return Util.Search.VIEW_PATH + "search.jsp";
+	}
+
+	@RequestMapping("/book_info.do")
+	public String book_info(Model model, String search) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("bname", "bname");
+		map.put("start", 1);
+		map.put("end", 1);
+
+		List<SearchVO> list = search_dao.selectList(map);
+		model.addAttribute("list", list);
+
+		return Util.Search.VIEW_PATH + "book_info.jsp";
+	}
+
+	@RequestMapping("/wish.do")
+	@ResponseBody
+	public String wish(Model model) {
+
 	}
 
 }

@@ -150,21 +150,17 @@ header {
     border-right: 1px solid #ddd;
 }
 
-
-
-
 .box {
     width: 1100px;
     margin: 0 auto;
 }
 
+
 footer {
-    clear: both;
-    display : block;
     height: 100px;
     border-top: 1px solid #ab8703;
     color: #000;
-    margin-top: 500px;
+    clear: both;
 }
 
 #bottom_menu {
@@ -207,7 +203,7 @@ footer .items li {
 
 aside {
     width: 200px;
-    height: auto;
+    height: 800px;
     float: left;
     margin-top: 30px;
     padding: 10px;
@@ -216,9 +212,9 @@ aside {
 aside ul li {
     width: 180px;
     height: 60px;
+    color: #000;
     border-bottom: 1px solid #ab8703;
     padding: 20px;
-    color: #000;
 }
 
 aside ul li a {
@@ -247,8 +243,7 @@ aside ul li a:visited:hover {
     margin-bottom: 20px;
 }
 
-
-/*search.html*/
+/* book_info.html*/
 .loc_history {
     padding: 20px 0;
     border-bottom: 2px solid #ccc;
@@ -257,59 +252,32 @@ aside ul li a:visited:hover {
 .book_box {
     width: 800px;
     float: left;
-    padding: 20px;
-    margin: 30px 0;
-    border: 1px solid #ccc;
-}
-
-.book_box span {
-	background-color: #fbf9ed;
-	font-weight : bold;
-	margin-right : 10px;
+    padding: 30px;
+    margin: 30px 0px 60px 0px;
+    background-color: rgb(255, 254, 221);
 }
 
 .book_size {
-    width: 150px;
-    height: 200px;
+    width: 200px;
+    height: 300px;
     float: left;
 }
 
-#search_bar {
-    display: block;
-    width: 800px;
-    padding: 40px;
-    margin-top: 30px;
-    background-color: #fbf9ed;
-    /* border-top : solid 1px #ccc;
-    border-bottom : solid 1px #ccc; */
-}
-
-#search_bar input[type=text] {
-    width: 470px;
-    height: 50px;
-    padding: 0 20px;
-    border : none;
-    font-size: 18px;
-}
-
-#search_bar input[type=text]:focus {outline: none;}
-
-#btn {
-    height: 50px;
-    font-size: 18px;
-}
-
 dl {
-    width: 570px;
+    width: 490px;
     float: right;
-    line-height: 150%;
-    margin-right : 10px;
+}
+
+.font_height {
+    line-height: 200%;
 }
 
 dt {
     font-weight: bold;
-    margin: 10px 0;
     font-size: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #ccc;
 }
 
 #bottom_line {
@@ -329,57 +297,96 @@ dt a:visited {
     text-decoration: underline;
 }
 
-select {
-    height: 50px;
-    border : none;
-    font-size: 18px;
-    width : 120px;
-    padding-left : 10px;
+.book_size2 {
+    width: 100px;
+    height: 150px;
+    float: left;
 }
 
-select:focus {outline: none;}
+.dl2 {
+    width: 624px;
+    line-height: 138%;
+}
 
-.btn {
-    display: inline-block;
-    padding: 0 30px;
-    font-size: 15px;
-    font-weight: 200;
-    background: transparent;
+.book_box2 {
+    width: 800px;
+    float: left;
+    padding: 15px;
+    margin-bottom: 30px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.book_box2:hover {
+    background-color: rgb(213, 213, 213);
+}
+
+
+/*테이블*/
+
+table {
+    width: 800px;
     text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    text-transform: uppercase;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
+    float: left;
+    margin: 20px 0px;
 }
 
-.btn-dark {
-    background: #555;
-    color: #fff;
+th {
+    border-bottom: 1px solid #888;
+    background-color: rgb(253, 253, 196);
+    padding: 10px;
+    margin: 10px;
 }
 
-.btn-dark:hover,
-.btn-dark:focus {
-    background: #373737;
-    border-color: #373737;
-    color: #fff;
+td {
+    border-bottom: 1px solid #888;
+    padding: 10px;
+    margin: 10px;
 }
 
-#pageMenu {
-	text-align : center;
-	height : 20px;
+#btn {
+    width: 80px;
+    height: 30px;
+}
+
+#heart {
+    width: 200px;
+    height: 50px;
+    background-color: #4976f1;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    margin-top : 10px;
+}
+
+#heart:hover {
+    background-color: #2653ce;
+    border: 2px solid #2653ce;
+    color: white;
+}
+
+#red_box {
+    margin: 20px 0px;
+    padding: 20px;
+    width: 800px;
+    height: 150px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#red {
+    width: 150px;
+    height: 30px;
+    margin: 5px;
+    background-color: rgb(249, 86, 86);
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+#red_text {
+    width: 570px;
+    float: right;
+    line-height: 180%;
 }
