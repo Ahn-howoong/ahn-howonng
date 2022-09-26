@@ -45,6 +45,11 @@
 		class="controller.SearchController">
 		<beans:property name="search_dao" ref="search_daoBean" />
 	</beans:bean>
+	
+	<beans:bean id="request_controller"
+		class="controller.RequestController">
+		<beans:property name="request_dao" ref="request_daoBean" />
+	</beans:bean>
 
 </beans:beans>
 

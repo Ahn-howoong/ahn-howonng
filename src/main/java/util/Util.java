@@ -21,4 +21,8 @@ public class Util {
 		// < 1 2 3 > 한 화면에 보여질 페이지 메뉴의 수
 		public static final int BLOCKPAGE = 5;
 	}
+
+	public static class Request {
+		public static String VIEW_PATH = "/WEB-INF/views/request/";
+	}
 }

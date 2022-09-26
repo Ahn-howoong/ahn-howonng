@@ -17,6 +17,10 @@
 	
 	<bean id="search_daoBean" class="dao.SearchDAO">
 		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="request_daoBean" class="dao.RequestDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
 	</bean> 
 		
 </beans>

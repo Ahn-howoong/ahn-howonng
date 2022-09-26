@@ -11,12 +11,14 @@
 	<typeAliases>
 		<typeAlias type="vo.ReviewVO" alias="review"/>
 		<typeAlias type="vo.SearchVO" alias="search"/>
+		<typeAlias type="vo.RequestVO" alias="request"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
 		<mapper resource="config/mybatis/mapper/review.xml" />
 		<mapper resource="config/mybatis/mapper/search.xml" />
+		<mapper resource="config/mybatis/mapper/request.xml" />
 	</mappers>
 </configuration>
 

@@ -31,6 +31,10 @@
 	                    data += "'><br><input type='button' onclick=\"send('";
 	                    data += msg.documents[i].title + "', '";
 	                    data += msg.documents[i].authors + "', '";
+	                    data += msg.documents[i].isbn + "', '";
+	                    data += msg.documents[i].price + "', '";
+	                    data += msg.documents[i].publisher + "', '";
+	                    data += msg.documents[i].datetime + "', '";
 	                    data += msg.documents[i].thumbnail;
 	                    data += "')\"; value='선택' class='btn-dark'></td></tr></table></form>";
 	                    
@@ -49,10 +53,28 @@
 	    // sendRequest(url, param, resultIns, "POST");
 	    //console(url, param);
 	} */
-	function send(title, authors, thumbnail){
-		opener.document.getElementById("bTitle").innerText = title;
-		opener.document.getElementById("bAuthors").innerText = authors;
-		opener.document.getElementById("bThumbnail").value = thumbnail;
+	function send(title, authors, isbn, price, publisher, datetime, thumbnail){
+		if(opener.document.getElementById("bTitle")) {
+			opener.document.getElementById("bTitle").innerText = title;
+		}
+		if(opener.document.getElementById("bAuthors")) {
+			opener.document.getElementById("bAuthors").innerText = authors;
+		}
+		if(opener.document.getElementById("bIsbn")) {
+			opener.document.getElementById("bIsbn").innerText = isbn;
+		}
+		if(opener.document.getElementById("bPrice")) {
+			opener.document.getElementById("bPrice").innerText = price + "원";
+		}
+		if(opener.document.getElementById("bPublisher")) {
+			opener.document.getElementById("bPublisher").innerText = publisher;
+		}
+		if(opener.document.getElementById("bDatetime")) {
+			opener.document.getElementById("bDatetime").innerText = datetime.substr(0,4);
+		}
+		if(opener.document.getElementById("bThumbnail")) {
+			opener.document.getElementById("bThumbnail").value = thumbnail;
+		}
 		close();
     }
 </script>
