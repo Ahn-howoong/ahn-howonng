@@ -25,4 +25,8 @@ public class Util {
 	public static class Request {
 		public static String VIEW_PATH = "/WEB-INF/views/request/";
 	}
+
+	public static class Static {
+		public static String VIEW_PATH = "/WEB-INF/views/static/";
+	}
 }

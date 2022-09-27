@@ -50,6 +50,11 @@
 		class="controller.RequestController">
 		<beans:property name="request_dao" ref="request_daoBean" />
 	</beans:bean>
+	
+	<beans:bean id="static_controller"
+		class="controller.StaticController">
+		
+	</beans:bean>
 
 </beans:beans>
 
