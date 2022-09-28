@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>진리도서관</title>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/index.css">
 <!-- Bootstrap CSS -->
@@ -27,87 +30,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<script type="text/javascript">
-	$(document).ready(function () {
-	    $(".nav_container nav ul li").mouseenter(function (e) {
-	        $(".nav_container nav ul li a").siblings(".nav_dropdown").show();
-	    });
-	    
-	    $("nav").mouseleave(function () {
-	      $(".nav_dropdown").hide();
-	    });
-	      
-	    $(".nav_dropdown div").mouseenter(function () {
-	      $(this).parentsUntil("li").parent().css("background-color", "#ffe695");
-	    });
-	        
-	    $(".nav_dropdown div").mouseleave(function () {
-	      $(this).parentsUntil("li").parent().css("background-color", "#fff");
-	    });
-	
-	  $('ul.n_menu li').click(function(){
-	     var tab_id = $(this).attr('data-tab');
-	
-	     $('ul.n_menu li').removeClass('current');
-	     $('.tab-content').removeClass('current');
-	
-	     $(this).addClass('current');
-	     $("#"+tab_id).addClass('current');
-	  })
-	
-	   $('ul.tabs li').click(function(){
-	     var tab_id = $(this).attr('data-tab');
-	
-	     $('ul.tabs li').removeClass('current');
-	     $('.tab_content').removeClass('current');
-	
-	     $(this).addClass('current');
-	     $("#"+tab_id).addClass('current');
-	   })
-	   $.ajax({
-	          method: "GET",
-	          url: "https://dapi.kakao.com/v3/search/book?target=title",
-	          data: { query : "소설" },
-	          headers : { Authorization: "KakaoAK 8e4c9f81d06f13ce398748177abb8d35" }
-	      })
-	          .done(function (msg) {
-	              console.log(msg);
-	              for(var i=0; i<4; i++) {
-	                var str = msg.documents[i].title;
-	                if(msg.documents[i].title.length > 14) {
-	                  str = str.substr(0, 14) + "..";
-	                }
-	                $("#tab1_img").append("<img src='" + msg.documents[i].thumbnail + "'>");
-	                $("#tab1_title").append("<p>" + str + "</p>");
-	                $("#tab3").append("<img src='" + msg.documents[i].thumbnail + "'>");
-	              }
-	              for(var i=4; i<8; i++) {
-	                $("#tab2").append("<img src='" + msg.documents[i].thumbnail + "'>");
-	                $("#tab4").append("<img src='" + msg.documents[i].thumbnail + "'>");
-	              }
-	          });
-	});
-	function send(f) {
-		let url = "login.do";
-		let param = "id=" + f.id.value + "&pwd=" + f.pwd.value;
-		
-		sendRequest(url, param, resultFn, "POST");
-	}
-	function resultFn() {
-		if(xhr.readyState == 4 && xhr.status == 200) {
-			// no_id, no_pwd, clear 중 하나를 받는다.
-			let data = xhr.responseText;
-			
-			if(data == 'no_id') {
-				alert("아이디가 없습니다.");
-			} else if (data == 'no_pwd') {
-				alert("비밀번호가 틀렸습니다.");
-			} else {
-				location.href="main.do";
-			}
-		}
-	}
-</script>
 <style>
 .background1::after {
 	width: 100%;
@@ -131,71 +53,86 @@
 			<div class="box">
 				<nav id="menu">
 					<ul id="top_menu">
-						<li>로그인</li>
+						<c:choose>
+							<c:when test="${empty user}">
+								<li><a href="login_form.do">로그인</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="logout.do">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li>|</li>
-						<li>로그아웃</li>
-						<li>|</li>
-						<li>마이페이지</li>
+						<li><a href="checkout.do">마이페이지</a></li>
 					</ul>
 				</nav>
 				<div id="logo">
-					<a href="index.html"><img
+					<a href="main.do"><img
 						src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
 				</div>
 			</div>
 		</header>
 		<div id="sticky">
 			<section class="navigation box">
-				<div class="nav_container">
-					<nav>
-						<ul>
-							<li><a href="search.html" class="title">자료검색</a>
-								<ul class="nav_dropdown">
-									<div class="menu_bd">
-										<li><a href="search.html">통합검색</a></li>
-										<li><a href="recommend.html">추천도서</a></li>
-									</div>
-								</ul></li>
-							<li><a href="info.html" class="title">도서관소개</a>
-								<ul class="nav_dropdown">
-									<div class="menu_bd">
-										<li><a href="info.html">도서관 안내</a></li>
-										<li><a href="borrow.html">대출반납안내</a></li>
-										<li><a href="map.html">찾아오시는길</a></li>
-										<li><a href="join.html">회원증 발급</a></li>
-									</div>
-								</ul></li>
-							<li><a href="project.html" class="title">열린공간</a>
-								<ul class="nav_dropdown">
-									<div class="menu_bd">
-										<li><a href="project.html">공지사항</a></li>
-										<li><a href="lost.html">자주하는질문</a></li>
-										<li><a href="qna.html">Q&A 게시판</a></li>
-										<li><a href="event.html">행사안내</a></li>
-									</div>
-								</ul></li>
-							<li><a href="checkout_return.html" class="title">나만의도서관</a>
-								<ul class="nav_dropdown">
-									<div>
-										<li><a href="checkout_return.html">도서대출현황</a></li>
-										<li><a href="book_request.html">희망도서신청</a></li>
-										<li><a href="review.do">나만의한줄평</a></li>
-										<li><a href="mbti.html">도서관NPC테스트</a></li>
-									</div>
-								</ul></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+              <div class="nav_container">
+              <nav>
+                <ul>
+                  <li><a href="search.do" class="title">자료검색</a>
+                      <ul class="nav_dropdown">
+                        <div class="menu_bd">
+                          <li><a href="search.do">통합검색</a></li>
+                          <li><a href="recommend.do">추천도서</a></li>
+                          <li><a href="request.do">희망도서신청</a></li>
+                        </div>
+                      </ul>
+                  </li>
+                  <li><a href="location.href='library_guide.do'" class="title">도서관소개</a>
+                      <ul class="nav_dropdown">
+                          <div class="menu_bd">
+                              <li><a href="library_guide.do">도서관 안내</a></li>
+                              <li><a href="checkout_guide.do">대출반납안내</a></li>
+                              <li><a href="map.do">찾아오시는길</a></li>
+                              <li><a href="membership.do">회원증 발급</a></li>
+                          </div>
+                      </ul>
+                  </li>
+                  <li><a href="location.href='notice_list.do'" class="title">열린공간</a>
+                      <ul class="nav_dropdown">
+                          <div class="menu_bd">
+                              <li><a href="notice_list.do">공지사항</a></li>
+                              <li><a href="often.do">자주하는질문</a></li>
+                              <li><a href="qna_list.do">Q&A 게시판</a></li>
+                              <li><a href="eventlist.do">행사안내</a></li>
+                          </div>
+                      </ul>
+                  </li>
+                  <li><a href="checkout.do" class="title">나만의도서관</a>
+                      <ul class="nav_dropdown">
+                          <div>
+                              <li><a href="checkout.do">도서대출현황</a></li>
+                              <li><a href="wish.do">관심도서목록</a></li>
+                              <li><a href="review.do">나만의한줄평</a></li>
+                              <li><a href="mbti.do">동화 MBTI 테스트</a></li>
+                          </div>
+                      </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </section>
 		</div>
 		<div class="background1">
 			<div class="box">
 				<div id="search">
 					<div>
-						<span>통합검색</span> <input name="search"
-							placeholder="도서명 또는 저자명을 입력해주세요"
-							style="width: 410px; height: 50px; border: none;"> <input
-							type="button" value="검색" id="btn">
+						<form>
+							<span>통합검색</span> <input name="search"
+								placeholder="도서명 또는 저자명을 입력해주세요"
+								style="width: 410px; height: 50px; border: none;"> <input
+								name="page" value="1" type="hidden"> <input
+								name="select" value="all" type="hidden"> <input
+								type="button" value="검색" id="btn"
+								onclick="search_send(this.form);">
+						</form>
 					</div>
 				</div>
 			</div>
@@ -218,10 +155,9 @@
 							<div class="mypage">
 								<h5>나의 도서관</h5>
 								<ul>
-									<li><a href="#">나의 서재</a></li>
-									<li><a href="checkout_return.html">대출조회/반납연기</a></li>
-									<li><a href="book_request.html">희망도서 신청</a></li>
-									<li><a href="recommend.html">맞춤도서 추천</a></li>
+									<li><a href="checkout.do">대출조회/반납연기</a></li>
+									<li><a href="request.do">희망도서 신청</a></li>
+									<li><a href="recommend.do">맞춤도서 추천</a></li>
 								</ul>
 							</div>
 						</c:when>
@@ -232,10 +168,9 @@
 								</h4>
 								<hr>
 								<ul>
-									<li><a href="#">나의 서재</a></li>
-									<li><a href="checkout_return.html">대출조회/반납연기</a></li>
-									<li><a href="book_request.html">희망도서 신청</a></li>
-									<li><a href="recommend.html">맞춤도서 추천</a></li>
+									<li><a href="checkout.do">대출조회/반납연기</a></li>
+									<li><a href="request.do">희망도서 신청</a></li>
+									<li><a href="recommend.do">맞춤도서 추천</a></li>
 								</ul>
 								<hr>
 								<form>
@@ -275,27 +210,25 @@
 				<div class="box3">
 					<table border="1" bordercolor="#ccc">
 						<tr>
-							<td><a href="checkout_return.html"><img
+							<td><a href="checkout.do"><img
 									src="${pageContext.request.contextPath}/resources/img/icon1.png"></a></td>
-							<td><a href="join.html"><img
+							<td><a href="membership.do"><img
 									src="${pageContext.request.contextPath}/resources/img/icon2.png"></a></td>
 						</tr>
 						<tr>
-							<td><a href="info.html"><img
+							<td><a href="library_guide.do"><img
 									src="${pageContext.request.contextPath}/resources/img/icon3.png"></a></td>
-							<td><a href="project.html"><img
+							<td><a href="notice_list.do"><img
 									src="${pageContext.request.contextPath}/resources/img/icon4.png"></a></td>
 						</tr>
 					</table>
-					<a href="mbti.html"><img
+					<a href="mbti.do"><img
 						src="${pageContext.request.contextPath}/resources/img/mbti_logo.png"
 						style="float: right;"></a>
 				</div>
 			</div>
 		</div>
-		<!-- <section class="box" style="height:500px">
-
-    </section> -->
+		
 		<section class="box">
 			<div id="carouselExampleIndicators" class="carousel slide slider2"
 				data-ride="carousel">
@@ -371,39 +304,24 @@
 			</div>
 		</section>
 		<div class="box">
-			<div class="container">
+			<div class="container" style="margin-left: -15px;">
 				<ul class="tabs">
-					<li class="tab_link current" data-tab="tab1">사서 추천도서</li>
-					<li class="tab_link" data-tab="tab2">대출베스트 도서</li>
-					<li class="tab_link" data-tab="tab3">신착도서</li>
-					<li class="tab_link" data-tab="tab4">이달의 도서</li>
+					<li class="tab_link current" data-tab="tab1">사서추천도서</li>
+					<li class="tab_link" data-tab="tab2">베스트셀러</li>
+					<li class="tab_link" data-tab="tab3">신간도서</li>
 				</ul>
-				<div id="tab1" class="tab_content current">
-					<div id="tab1_img"></div>
-					<div id="tab1_title"></div>
-				</div>
+				<div id="tab1" class="tab_content current"></div>
 				<div id="tab2" class="tab_content"></div>
 				<div id="tab3" class="tab_content"></div>
-				<div id="tab4" class="tab_content"></div>
 			</div>
 		</div>
-		<footer>
-			<div class="box">
-				<nav id="bottom_menu">
-					<ul>
-						<li><a href="tos.html">이용약관</a></li>
-						<li><a href="privacy.html">개인정보처리방침</a></li>
-						<li><a href="use.html">도서관운영조례</a></li>
-					</ul>
-				</nav>
-				<div class="items">
-					<ul>
-						<li>Copyright© 2000. JINRI DISTRICT LIBRARY. All Rights
-							Reserved.</li>
-					</ul>
-				</div>
-			</div>
-		</footer>
+		<nav id="bottom_menu">
+                <ul>
+                    <li><a href="footer1.do">이용약관</a></li>
+                    <li><a href="footer2.do">개인정보처리방침</a></li>
+                    <li><a href="footer3.do">도서관운영조례</a></li>
+                </ul>
+            </nav>
 	</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 @import url("https://webfontworld.github.io/NanumSquare/NanumSquare.css");
 * { margin : 0; padding : 0; box-sizing : border-box; font-family: 'NanumSquare';}   
     li { list-style-type : none; }
+    a:link, a:visited, a:hover, a:active { color : black; }
     header { height : 160px;} 
     .all { display:inline-block; margin : 0 auto; width:100%; }
     .box { width : 1100px; margin : 0 auto; }
@@ -52,14 +53,15 @@
     .login h4, .login li { padding-left:10px; }
     .login span { background-color: #fef0bc;}
     .login input[type=button] { width:280px; height:38px; margin:10px 0 0 10px; background-color:#f5cc3b; 
-                    border:1px solid #f5cc3b; border-radius: 20px; outline:0; }
+                    border:1px solid #f5cc3b; border-radius: 20px; outline:0; padding : 0px; }
     .login a { text-decoration:none; border-radius: 20px; }
     .login a:link, .login a:hover, .login a:active, .login a:visited { color:black; text-decoration:none; }
     .login p { border : none; background-color:#ffe695; width:280px; height:38px; 
-               text-align:center; margin-top:10px; margin-left:10px; padding-top : 5px; }
+               text-align:center; margin-top:10px; margin-left:10px; padding-top : 7px; }
     .mypage { width : 330px; height: 150px; margin-top : 20px; background-color: white;
               padding:10px 20px 10px 20px; border-radius: 15px; }
-    input { padding:5px; margin:10px; }
+    .mypage h5 { padding : 8px 0px; border-bottom : solid 1px #ccc; }
+    input { padding:10px; margin:10px; }
     .box { width : 1100px; margin : 0 auto; }
     .box1 { width : 340px; height : 510px; float: left; }
     .box2 { width : 420px; height : 510px; display: inline-block; margin : 0 auto; }
@@ -81,20 +83,22 @@
     .tab-content.current{ display: inherit; background-color: #fff5d3;}
     .tab-content a { text-decoration:none; color:#000; }
     .tab-content b { font-size:18px; }
-    .container{ float:left; margin-left:-15px; margin-top:-310px;}
+    .container{ margin:-310px 0px 0px -15px;}
     ul.tabs{ list-style: none; width:1100px; border:1px solid #ccc; border-right:none; }
     ul.tabs li{ background: none; color: #222; display:inline-block; 
                 padding: 10px 20px; cursor: pointer; font-size:20px; }
     ul.tabs li.current{ background: #cfab42; color: #fff; }
-    .tab_link { width:275px; text-align:center; border-right:1px solid #ccc; margin-right:-4px; }
+    .tab_link { width:366px; text-align:center; border-right:1px solid #ccc; margin-right:-4px; }
     .tab_content{ display: none; background: #ededed; text-align:center; 
                   padding: 15px; height:430px; width:1100px;}
     .tab_content.current{ display: inherit; }
     .tab_content img { padding : 20px; margin : 20px; width : 220px; 
                       box-shadow: 5px 5px 5px #ddd; border : solid 1px #ddd; }
     #tab1_title p { padding : 0px 10px; margin : 0px 20px; width : 220px; display: inline-block;}
+    .tab_content ul { width: 250px; text-align: center; display: inline-block; }
+    .tab_content img { width : 220px; height : 303px; }
     footer { height : 100px; border-top: 1px solid #ab8703; 
-            color : #000; margin-top:230px; }
+            color : #000; margin-top:100px; }
     #bottom_menu { height:50px; }
     #bottom_menu ul { padding : 20px 0 30px 0; font-weight : bold; padding-top:50px; }
     #bottom_menu li { display : inline; margin-right : 30px; }
