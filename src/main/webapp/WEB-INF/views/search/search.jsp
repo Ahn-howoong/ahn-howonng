@@ -82,7 +82,7 @@
 			// gogaeklist.do?search=all로 넘어갈 수 있도록 해준다.
 			search = 'all';
 		}
-		location.href = "search.do?page=${empty param.page ? 1 : param.page}&search="
+		location.href = "search.do?page=1&search="
 				+ search + "&select=" + select;
 	}
 </script>

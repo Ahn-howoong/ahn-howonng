@@ -14,4 +14,10 @@ public class StaticController {
 		return Util.Static.VIEW_PATH + "recommend.jsp";
 	}
 
+	@RequestMapping("/mbti.do")
+	public String mbti() {
+
+		return Util.Static.VIEW_PATH + "mbti.jsp";
+	}
+
 }
