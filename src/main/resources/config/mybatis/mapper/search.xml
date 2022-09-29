@@ -35,18 +35,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 검색시 게시물 수 -->
 	<select id="search_count" resultType="int"
 		parameterType="java.util.Map">
-		select COUNT(*) FROM book where
-
+		select COUNT(*) from book
+		where
 		<if test="bname!=null">
-			bname like '%'|| #{search} ||'%'
+			upper(bname) like upper('%'|| #{search} ||'%')
+			or
+			lower(bname) like lower('%'|| #{search} ||'%')
 		</if>
 		<if test="author!=null">
-			author like '%'|| #{search} ||'%'
+			upper(author) like upper('%'|| #{search} ||'%')
+			or
+			lower(author) like lower('%'|| #{search} ||'%')
 		</if>
 		<if test="all!=null">
-			bname like '%'|| #{search} ||'%'
-			or author like '%'||
-			#{search} ||'%'
+			upper(bname) like upper('%'|| #{search} ||'%')
+			or
+			lower(bname) like lower('%'|| #{search} ||'%')
+			or
+			upper(author) like upper('%'|| #{search} ||'%')
+			or
+			lower(author) like lower('%'|| #{search} ||'%')
 		</if>
 	</select>
 	
