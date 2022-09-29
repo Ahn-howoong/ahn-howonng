@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,16 +44,7 @@
 	            });
 	    });
 	});
-/* 	function send(title, authors, thumbnail) {
-	    
-	    var url = "review_write.do";
-	    var param = "title=" + title + "&authors=" + authors + "&thumbnail=" + encodeURIComponent(thumbnail);
-	    
-	    f.action = url + "?" + param;
-	    f.submit();
-	    // sendRequest(url, param, resultIns, "POST");
-	    //console(url, param);
-	} */
+
 	function send(title, authors, isbn, price, publisher, datetime, thumbnail){
 		if(opener.document.getElementById("bTitle")) {
 			opener.document.getElementById("bTitle").innerText = title;

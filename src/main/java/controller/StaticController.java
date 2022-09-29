@@ -13,4 +13,5 @@ public class StaticController {
 
 		return Util.Static.VIEW_PATH + "recommend.jsp";
 	}
+
 }

@@ -5,6 +5,8 @@
     font-family: 'NanumSquare';
 }
 
+#menu a:link, #menu a:visited, #menu a:hover, #menu a:active { color : black; text-decoration : none;  }
+
 li {
     list-style-type: none;
 }

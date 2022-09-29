@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,66 +24,72 @@
         <header>
             <div class="box">
                 <nav id="menu">
-                    <ul id="top_menu">
-                        <li>로그인</li>
-                        <li>|</li>
-                        <li>로그아웃</li>
-                        <li>|</li>
-                        <li>마이페이지</li>
-                    </ul>
-                </nav>
+					<ul id="top_menu">
+						<c:choose>
+							<c:when test="${empty user}">
+								<li><a href="login_form.do">로그인</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="logout.do">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
+						<li>|</li>
+						<li><a href="checkout.do">마이페이지</a></li>
+					</ul>
+				</nav>
                 <div id="logo">
-                    <a href="index.html"><img src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
+                    <a href="main.do"><img src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
                 </div>
             </div>
         </header>
         <div id="sticky">
             <section class="navigation box">
-                <div class="nav_container">
-                    <nav>
-                        <ul>
-                            <li><a href="search.html" class="title">자료검색</a>
-                                <ul class="nav_dropdown">
-                                    <div class="menu_bd">
-                                        <li><a href="search.html">통합검색</a></li>
-                                        <li><a href="recommend.html">추천도서</a></li>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li><a href="info.html" class="title">도서관소개</a>
-                                <ul class="nav_dropdown">
-                                    <div class="menu_bd">
-                                        <li><a href="info.html">도서관 안내</a></li>
-                                        <li><a href="borrow.html">대출반납안내</a></li>
-                                        <li><a href="map.html">찾아오시는길</a></li>
-                                        <li><a href="join.html">회원증 발급</a></li>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li><a href="project.html" class="title">열린공간</a>
-                                <ul class="nav_dropdown">
-                                    <div class="menu_bd">
-                                        <li><a href="project.html">공지사항</a></li>
-                                        <li><a href="lost.html">자주하는질문</a></li>
-                                        <li><a href="qna.html">Q&A 게시판</a></li>
-                                        <li><a href="event.html">행사안내</a></li>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li><a href="checkout_return.html" class="title">나만의도서관</a>
-                                <ul class="nav_dropdown">
-                                    <div>
-                                        <li><a href="checkout_return.html">도서대출현황</a></li>
-                                        <li><a href="book_request.html">희망도서신청</a></li>
-                                        <li><a href="review.html">나만의한줄평</a></li>
-                                        <li><a href="mbti.html">도서관NPC테스트</a></li>
-                                    </div>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </section>
+              <div class="nav_container">
+              <nav>
+                <ul>
+                  <li><a href="search.do" class="title">자료검색</a>
+                      <ul class="nav_dropdown">
+                        <div class="menu_bd">
+                          <li><a href="search.do">통합검색</a></li>
+                          <li><a href="recommend.do">추천도서</a></li>
+                          <li><a href="request.do">희망도서신청</a></li>
+                        </div>
+                      </ul>
+                  </li>
+                  <li><a href="location.href='library_guide.do'" class="title">도서관소개</a>
+                      <ul class="nav_dropdown">
+                          <div class="menu_bd">
+                              <li><a href="library_guide.do">도서관 안내</a></li>
+                              <li><a href="checkout_guide.do">대출반납안내</a></li>
+                              <li><a href="map.do">찾아오시는길</a></li>
+                              <li><a href="membership.do">회원증 발급</a></li>
+                          </div>
+                      </ul>
+                  </li>
+                  <li><a href="location.href='notice_list.do'" class="title">열린공간</a>
+                      <ul class="nav_dropdown">
+                          <div class="menu_bd">
+                              <li><a href="notice_list.do">공지사항</a></li>
+                              <li><a href="often.do">자주하는질문</a></li>
+                              <li><a href="qna_list.do">Q&A 게시판</a></li>
+                              <li><a href="eventlist.do">행사안내</a></li>
+                          </div>
+                      </ul>
+                  </li>
+                  <li><a href="checkout.do" class="title">나만의도서관</a>
+                      <ul class="nav_dropdown">
+                          <div>
+                              <li><a href="checkout.do">도서대출현황</a></li>
+                              <li><a href="wish.do">관심도서목록</a></li>
+                              <li><a href="review.do">나만의한줄평</a></li>
+                              <li><a href="mbti.do">동화 MBTI 테스트</a></li>
+                          </div>
+                      </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </section>
         </div>
 
 
@@ -90,9 +97,9 @@
             <aside>
                 <ul>
                     <li id="strong">자료검색</li>
-                    <li><a href="search.html">통합검색</a></li>
-                    <li><a href="recommend.html">추천도서</a></li>
-
+                    <li><a href="search.do">통합검색</a></li>
+                    <li><a href="recommend.do">추천도서</a></li>
+                    <li><a href="request.do">희망도서신청</a></li>
                 </ul>
             </aside>
 
@@ -125,12 +132,12 @@
       <footer>
             <div class="box">
                 <nav id="bottom_menu">
-                    <ul>
-                        <li><a href="tos.html">이용약관</a></li>
-                        <li><a href="privacy.html">개인정보처리방침</a></li>
-                        <li><a href="use.html">도서관운영조례</a></li>
-                    </ul>
-                </nav>
+                   <ul>
+                       <li><a href="footer1.do">이용약관</a></li>
+                       <li><a href="footer2.do">개인정보처리방침</a></li>
+                       <li><a href="footer3.do">도서관운영조례</a></li>
+                   </ul>
+               </nav>
                 <div class="items">
                     <ul>
                         <li>Copyright© 2000. JINRI DISTRICT LIBRARY. All Rights Reserved.</li>
