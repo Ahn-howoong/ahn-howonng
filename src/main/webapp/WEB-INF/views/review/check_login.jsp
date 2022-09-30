@@ -8,11 +8,15 @@
 		location.href="login_form.do";
 	</script>
 </c:if>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
+</style>
 </head>
 <body>
 

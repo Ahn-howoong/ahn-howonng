@@ -16,6 +16,9 @@
 <link href="https://webfontworld.github.io/NanumSquare/NanumSquare.css"
 	rel="stylesheet">
 <title>진리도서관 :: 통합검색</title>
+<style>
+	#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
+</style>
 <script type="text/javascript">
 	$(document).ready(
 			function() {

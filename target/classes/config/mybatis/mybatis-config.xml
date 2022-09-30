@@ -12,6 +12,9 @@
 		<typeAlias type="vo.ReviewVO" alias="review"/>
 		<typeAlias type="vo.SearchVO" alias="search"/>
 		<typeAlias type="vo.RequestVO" alias="request"/>
+		<typeAlias type="vo.NoticeVO" alias="notice"/>
+		<typeAlias type="vo.CheckoutVO" alias="checkout"/>
+		<typeAlias type="vo.WishVO" alias="wish"/>
 	</typeAliases>
 	
 	<mappers>
@@ -19,6 +22,9 @@
 		<mapper resource="config/mybatis/mapper/review.xml" />
 		<mapper resource="config/mybatis/mapper/search.xml" />
 		<mapper resource="config/mybatis/mapper/request.xml" />
+		<mapper resource="config/mybatis/mapper/notice.xml" />
+		<mapper resource="config/mybatis/mapper/checkout.xml" />
+		<mapper resource="config/mybatis/mapper/wish.xml" />
 	</mappers>
 </configuration>
 

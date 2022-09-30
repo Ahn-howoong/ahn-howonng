@@ -84,13 +84,10 @@ public class MemberController {
 		// 세션에 저장된 데이터는 현재 프로젝트의 모든 jsp에서 사용이 가능
 		HttpSession session = request.getSession();
 		session.setAttribute("user", baseVO);
+		MemberVO mvo = (MemberVO) session.getAttribute("user");
+		System.out.println("--member controller" + mvo.getId());
 		resultStr = "clear";
 		return resultStr; // 로그인 성공시 clear를 콜백 메서드로 전달
-	}
-
-	@RequestMapping(value = { "/", "/main.do" })
-	public String checkLogin() {
-		return PATH + "main.jsp";
 	}
 
 	@RequestMapping("/logout.do")

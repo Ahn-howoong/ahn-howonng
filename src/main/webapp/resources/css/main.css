@@ -1,7 +1,6 @@
 @import url("https://webfontworld.github.io/NanumSquare/NanumSquare.css");
 * { margin : 0; padding : 0; box-sizing : border-box; font-family: 'NanumSquare';}   
     li { list-style-type : none; }
-    a:link, a:visited, a:hover, a:active { color : black; }
     header { height : 160px;} 
     .all { display:inline-block; margin : 0 auto; width:100%; }
     .box { width : 1100px; margin : 0 auto; }
@@ -10,6 +9,7 @@
     #logo img { height:80px; }
     #top_menu { float:right; }
     #top_menu li { padding-right:10px; }
+
     #menu { float : right; text-align : right; margin-top:20px;} 
     #menu li { display : inline-block; }
     #main_menu li { margin : 50px 0 0 80px; font-family : "맑은고딕"; 
@@ -83,6 +83,7 @@
     .tab-content.current{ display: inherit; background-color: #fff5d3;}
     .tab-content a { text-decoration:none; color:#000; }
     .tab-content b { font-size:18px; }
+    .tab-content p { font-size:18px; }
     .container{ margin:-310px 0px 0px -15px;}
     ul.tabs{ list-style: none; width:1100px; border:1px solid #ccc; border-right:none; }
     ul.tabs li{ background: none; color: #222; display:inline-block; 

@@ -29,4 +29,12 @@ public class Util {
 	public static class Static {
 		public static String VIEW_PATH = "/WEB-INF/views/static/";
 	}
+
+	public static class Notice {
+		// 한 페이지에 보여줄 게시물 수
+		public static final int BLOCKLIST = 10;
+
+		// < 1 2 3 4 5 > 식으로 한 화면에 보여질 페이지 메뉴의 수
+		public static final int BLOCKPAGE = 5;
+	}
 }

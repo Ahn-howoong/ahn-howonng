@@ -31,6 +31,9 @@
 	crossorigin="anonymous"></script>
 <link href="https://webfontworld.github.io/NanumSquare/NanumSquare.css"
 	rel="stylesheet">
+<style>
+	#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
+</style>
 <script>
         $(document).ready(function () {
             $(".nav_container nav ul li").mouseenter(function (e) {

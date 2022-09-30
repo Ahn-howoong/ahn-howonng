@@ -95,10 +95,9 @@ public class SearchController {
 		return Util.Search.VIEW_PATH + "book_info.jsp";
 	}
 
-	@RequestMapping("/wish.do")
+	@RequestMapping("/wish_insert.do")
 	@ResponseBody
 	public String wish(Model model, String id, String reginum) {
-
 		SearchVO vo = new SearchVO();
 		vo.setId(id);
 		vo.setReginum(reginum);

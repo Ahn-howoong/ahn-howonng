@@ -29,6 +29,9 @@
     <!-- webfont -->
     <link href="https://webfontworld.github.io/NanumSquare/NanumSquare.css" rel="stylesheet">
 <title>진리도서관 :: 동화 mbti 테스트</title>
+<style>
+	#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
+</style>
 <script type="text/javascript">
 var mbti = "";
 

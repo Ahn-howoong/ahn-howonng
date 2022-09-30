@@ -46,20 +46,20 @@ $(document)
 										console.log(msg);
 
 										for (var i = 0; i < 12; i++) {
-											var str = "<ul><li><a href='search.do?";
+											var str = "<ul><li><a href='search.do?page=1&search=";
 											str += msg.item[i].title
-											str += "'><img src='";
+											str += "&select=all'><img src='";
 											str += msg.item[i].cover;
-											str += "' class='zoom'></a></li><li><a href='search.do?";
+											str += "' class='zoom'></a></li><li><a href='search.do?page=1&search=";
 											str += msg.item[i].title;
-											str += "'>";
+											str += "&select=all'>";
 											str += (msg.item[i].title.length <= 10 ? msg.item[i].title
 													: msg.item[i].title.substr(
 															0, 10)
 															+ "...");
-											str += "</a></li><li><a href='search.do?";
+											str += "</a></li><li><a href='search.do?page=1&search=";
 											str += msg.item[i].title;
-											str += "'>";
+											str += "&select=all'>";
 											str += (msg.item[i].author.length <= 10 ? msg.item[i].author
 													: msg.item[i].author
 															.substr(0, 10)
@@ -87,18 +87,18 @@ $
 					console.log(msg);
 
 					for (var i = 0; i < 12; i++) {
-						var str = "<ul><li><a href='search.do?";
+						var str = "<ul><li><a href='search.do?page=1&search=";
 						str += msg.item[i].title
-						str += "'><img src='";
+						str += "&select=all'><img src='";
 						str += msg.item[i].cover;
-						str += "' class='zoom'></a></li><li><a href='search.do?";
+						str += "' class='zoom'></a></li><li><a href='search.do?page=1&search=";
 						str += msg.item[i].title;
-						str += "'>";
+						str += "&select=all'>";
 						str += (msg.item[i].title.length <= 10 ? msg.item[i].title
 								: msg.item[i].title.substr(0, 10) + "...");
-						str += "</a></li><li><a href='search.do?";
+						str += "</a></li><li><a href='search.do?page=1&search=";
 						str += msg.item[i].title;
-						str += "'>";
+						str += "&select=all'>";
 						str += (msg.item[i].author.length <= 10 ? msg.item[i].author
 								: msg.item[i].author.substr(0, 10) + "...");
 						str += "</a></li></ul>";
@@ -122,18 +122,18 @@ $
 					console.log(msg);
 
 					for (var i = 0; i < 12; i++) {
-						var str = "<ul><li><a href='search.do?";
+						var str = "<ul><li><a href='search.do?page=1&search=";
 						str += msg.item[i].title
-						str += "'><img src='";
+						str += "&select=all'><img src='";
 						str += msg.item[i].cover;
-						str += "' class='zoom'></a></li><li><a href='search.do?";
+						str += "' class='zoom'></a></li><li><a href='search.do?page=1&search=";
 						str += msg.item[i].title;
-						str += "'>";
+						str += "&select=all'>";
 						str += (msg.item[i].title.length <= 10 ? msg.item[i].title
 								: msg.item[i].title.substr(0, 10) + "...");
-						str += "</a></li><li><a href='search.do?";
+						str += "</a></li><li><a href='search.do?page=1&search=";
 						str += msg.item[i].title;
-						str += "'>";
+						str += "&select=all'>";
 						str += (msg.item[i].author.length <= 10 ? msg.item[i].author
 								: msg.item[i].author.substr(0, 10) + "...");
 						str += "</a></li></ul>";

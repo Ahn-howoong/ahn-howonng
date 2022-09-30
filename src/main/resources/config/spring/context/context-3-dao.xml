@@ -22,5 +22,20 @@
 	<bean id="request_daoBean" class="dao.RequestDAO">
 		<property name="sqlSession" ref="sqlSessionBean"/>
 	</bean> 
+	
+	<bean id="notice_daoBean" class="dao.NoticeDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	<bean id="notice_daoBean2" class="dao.NoticeDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="checkout_daoBean" class="dao.CheckoutDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/> 
+	</bean>
+	
+	<bean id="wish_daoBean" class="dao.WishDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/> 
+	</bean>
 		
 </beans>

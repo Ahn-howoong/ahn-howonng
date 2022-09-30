@@ -45,6 +45,8 @@
 	z-index: -999;
 	opacity: 0.5;
 }
+
+#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
 </style>
 </head>
 <body>
@@ -263,12 +265,15 @@
 			</div>
 			<div class="notice">
 				<ul class="n_menu">
-					<li class="tab-link current" data-tab="tab-1">도서관 행사</li>
+					<li class="tab-link current" data-tab="tab-1">공지사항</li>
 					<li class="tab-link" data-tab="tab-2">문화강좌</li>
 					<li class="tab-link" data-tab="tab-3">프로그램 신청</li>
 				</ul>
 				<div id="tab-1" class="tab-content current">
-					<a href="#">&lt;<b>책벌레 클럽 주최</b>&gt; 월간 독서 모임
+					<c:forEach begin="1" end="7" var="vo" items="${n_list}">
+						<p><a href="notice_view.do?idx=${vo.idx}&page=1">${vo.title}</a></p>
+					</c:forEach>
+					<!-- <a href="#">&lt;<b>책벌레 클럽 주최</b>&gt; 월간 독서 모임
 					</a><br> <a href="#">&lt;<b>2022 여름 북토크</b>&gt; 이만큼 가까이 - 정세랑
 					</a><br> <a href="#">&lt;<b>2022 서울 북스타트</b>&gt; 영유아 책 꾸러미 선물
 						증정
@@ -278,7 +283,7 @@
 						증정
 					</a><br> <a href="#">&lt;<b>2022 서울 북스타트</b>&gt; 영유아 책 꾸러미 선물
 						증정
-					</a>
+					</a> -->
 				</div>
 				<div id="tab-2" class="tab-content">
 					<a href="#"><b>[문화강좌]</b> 2022년 4기(10~12월) 문화강좌 회원 모집</a><br>

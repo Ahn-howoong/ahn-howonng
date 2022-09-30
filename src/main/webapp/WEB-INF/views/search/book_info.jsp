@@ -16,6 +16,9 @@
 <link href="https://webfontworld.github.io/NanumSquare/NanumSquare.css"
 	rel="stylesheet">
 <title>진리도서관 :: 책 정보</title>
+<style>
+	#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
+</style>
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -83,7 +86,7 @@
 		return;
 		</c:if>
 
-		var url = "wish.do";
+		var url = "wish_insert.do";
 		console.log(f.id.value);
 		var param = "id=" + f.id.value + "&reginum=" + f.reginum.value;
 		sendRequest(url, param, resultFunc, "Post"); // 넘어갈 url, 파라미터, 콜백함수, 전송방식

@@ -62,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="wish_insert" parameterType="search">
 		insert into wish
 		values(
+		seq_wish_idx.nextVal,
 		#{id},
 		#{reginum}
 		)

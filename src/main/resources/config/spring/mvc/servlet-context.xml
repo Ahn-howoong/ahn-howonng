@@ -55,6 +55,23 @@
 		class="controller.StaticController">
 		
 	</beans:bean>
+	
+	<beans:bean id="con1" class="controller.NoticeController">
+		<beans:property name="notice_dao" ref="notice_daoBean"/>
+	</beans:bean>
+	
+	<beans:bean id="con3" class="controller.CheckoutController">
+		<beans:property name="checkout_dao" ref="checkout_daoBean"/>
+	</beans:bean>
+	
+	<beans:bean id="con4" class="controller.WishController">
+		<beans:property name="wish_dao" ref="wish_daoBean"/>
+	</beans:bean>
+	
+	<beans:bean id="main_controller"
+		class="controller.MainController">
+		<beans:property name="notice_dao2" ref="notice_daoBean2"/>
+	</beans:bean>
 
 </beans:beans>
 
