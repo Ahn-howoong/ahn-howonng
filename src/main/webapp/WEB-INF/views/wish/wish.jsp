@@ -62,7 +62,12 @@
 </script>
 </head>
 <body>
-<jsp:include page="../review/check_login.jsp"/>
+<c:if test="${empty user}">
+	<script>
+		alert("로그인 후 이용할 수 있습니다.");
+		location.href="login_form.do";
+	</script>
+</c:if>
 	<div id="all">
         <header>
             <div class="box"> 

@@ -79,11 +79,12 @@
                           font-weight:bold; border: 5px solid #ffe695; background-color: #fff;}
     .tab-link { text-align:center; margin-right:-4px; width:185px; }
     .tab-content{ width:555px; height:260px; display: none; text-align:left;
-                  padding:20px 15px 15px 25px; margin-top:-22px; line-height:200%; }
+                  padding:20px; margin-top:-22px; line-height:200%; }
     .tab-content.current{ display: inherit; background-color: #fff5d3;}
     .tab-content a { text-decoration:none; color:#000; }
     .tab-content b { font-size:18px; }
     .tab-content p { font-size:18px; }
+    .tab-content span { margin-left : 20px; font-size:15px; color:#888; float:right; }
     .container{ margin:-310px 0px 0px -15px;}
     ul.tabs{ list-style: none; width:1100px; border:1px solid #ccc; border-right:none; }
     ul.tabs li{ background: none; color: #222; display:inline-block; 

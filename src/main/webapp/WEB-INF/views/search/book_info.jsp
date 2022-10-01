@@ -46,8 +46,7 @@
 								});
 
 						<c:forEach var="vo" items="${list}">
-						$
-								.ajax(
+						$.ajax(
 										{
 											method : "GET",
 											url : "https://dapi.kakao.com/v3/search/book",

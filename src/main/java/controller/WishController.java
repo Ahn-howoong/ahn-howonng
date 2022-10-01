@@ -30,7 +30,6 @@ public class WishController {
 
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("user");
-		System.out.println("---------------" + vo.getId());
 
 		List<WishVO> wlist = wish_dao.selectList(vo.getId());
 		model.addAttribute("wlist", wlist);

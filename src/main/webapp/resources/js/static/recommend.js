@@ -36,10 +36,7 @@ $(document)
 									{
 										method : "GET",
 										url : "https://cors-anywhere.herokuapp.com/http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbzhdwhfla2238001&QueryType=BlogBest&MaxResults=12&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big",
-										data : {
-										// QueryType: "Bestseller",
-										// Output: "JS"
-										}
+										data : {}
 									})
 							.done(
 									function(msg) {

@@ -72,6 +72,14 @@
 		class="controller.MainController">
 		<beans:property name="notice_dao2" ref="notice_daoBean2"/>
 	</beans:bean>
+	
+	<beans:bean id="con5" class="controller.EventController">
+		<beans:property name="event_dao" ref="event_daoBean"/>
+	</beans:bean>
+	
+	<beans:bean id="con6" class="controller.QnaController">
+		<beans:property name="qna_dao" ref="qna_daoBean"/>	
+	</beans:bean>
 
 </beans:beans>
 

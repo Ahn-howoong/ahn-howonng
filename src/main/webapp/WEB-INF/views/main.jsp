@@ -271,7 +271,7 @@
 				</ul>
 				<div id="tab-1" class="tab-content current">
 					<c:forEach begin="1" end="7" var="vo" items="${n_list}">
-						<p><a href="notice_view.do?idx=${vo.idx}&page=1">${vo.title}</a></p>
+						<p><a href="notice_view.do?idx=${vo.idx}&page=1">${vo.title}</a><span>${vo.regidate}</span></p>
 					</c:forEach>
 					<!-- <a href="#">&lt;<b>책벌레 클럽 주최</b>&gt; 월간 독서 모임
 					</a><br> <a href="#">&lt;<b>2022 여름 북토크</b>&gt; 이만큼 가까이 - 정세랑

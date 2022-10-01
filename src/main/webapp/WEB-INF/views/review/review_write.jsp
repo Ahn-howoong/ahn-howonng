@@ -31,7 +31,7 @@
 	rel="stylesheet">
 <title>진리도서관 :: 나만의한줄평</title>
 <style>
-	#top_menu a:link, a:visited, a:hover, a:active { color : #000; text-decoration:none; }
+	#top_menu a:link, #top_menu a:visited, #top_menu a:hover, #top_menu a:active { color : #000; text-decoration:none; }
 </style>
 <script type="text/javascript">
 	$(document).ready(
@@ -222,7 +222,7 @@
 				</div>
 				<div class="bt_wrap">
 					<a class="submit" href="javascript:send(document.getElementById('board_tbl'));">등록</a>
-					<a href="review.do" class="submit">취소</a>
+					<a href="review.do" class="submit" style="color:#fff;">취소</a>
 					<!-- 글 작성 게시판 마다 링크 바꿔야함-->
 				</div>
 

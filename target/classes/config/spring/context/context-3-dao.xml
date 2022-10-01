@@ -37,5 +37,12 @@
 	<bean id="wish_daoBean" class="dao.WishDAO">
 		<property name="sqlSession" ref="sqlSessionBean"/> 
 	</bean>
-		
+	
+	<bean id="event_daoBean" class="dao.EventDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id = "qna_daoBean" class="dao.QnaDAO">
+		<property name = "sqlSession" ref="sqlSessionBean"/>
+	</bean>
 </beans>

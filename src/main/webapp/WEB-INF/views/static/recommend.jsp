@@ -102,7 +102,7 @@
 			</aside>
 
 			<div class="main">
-				<h1 style="font-size: 32px;">자료검색</h1>
+				<h1 style="font-size: 32px;">추천도서</h1>
 				<div class="loc_history">
 					홈 &nbsp;>&nbsp; 자료검색 &nbsp;> &nbsp; <b> 추천도서 </b>
 				</div>
