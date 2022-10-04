@@ -28,6 +28,7 @@
     font-size: 16px;
     background: #373737;
     color: #fff;
+    cursor: pointer;
 }
 
 .board_write input, .board_write textarea {
@@ -50,6 +51,7 @@
     padding : 5px 10px;
     margin-left: 10px;
     width : 120px;
+     cursor: pointer;
 }
 
 .btn-dark {
@@ -62,6 +64,7 @@
     background: #373737;
     border-color: #373737;
     color: #fff;
+    
 }
 
 .board_write .title input[type="text"] {

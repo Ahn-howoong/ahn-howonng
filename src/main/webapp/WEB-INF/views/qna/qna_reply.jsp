@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A :: 새 글 등록</title>
+<title>진리도서관 :: Q&A게시판</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -126,8 +126,12 @@
                         홈  &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> Q&A </b>
                     </div>
                 </div>
+                
                 <form method="post" action="qna_reply.do?id=${ user.id }&page=${empty param.page ? 1 : param.page}&idx=${param.idx}&ref=${param.ref}">
+                  <input type="hidden" name="ref" value="${ ref }">
+                  <input type="hidden" name="idx" value="${ idx }">
                   <div class="board_write_wrap">
+                  
                       <div class="board_write">
                           <div class="title">
                               <h4>작성자 : ${user.id}</h4>

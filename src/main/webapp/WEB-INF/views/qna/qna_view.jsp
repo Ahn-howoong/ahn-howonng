@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A : : ${vo.title}</title>
+<title>진리도서관 :: Q&A게시판 :: ${vo.title}</title>
 <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -154,10 +154,10 @@ function qna_reply(f) {
   <div class = "main">
 		          <div id="location">
 		            <div>
-		              <h1> Q&A </h1>
+		              <h1>Q&A 게시판</h1>
 		            </div>
 		            <div class="loc_history">
-		              	홈 &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> Q&A </b>
+		              	홈 &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b>Q&A 게시판</b>
 		            </div>
 		          </div>
                 
@@ -172,7 +172,7 @@ function qna_reply(f) {
                             <span>조회수 &nbsp;|&nbsp; <b>${vo.readhit}</b></span>
                             <hr>
                             <div class="cont">
-                                	<pre>${vo.content}</pre>
+                                	<pre style="font-family:'NanumSquare'; font-size:16px;">${vo.content}</pre>
                             </div>
                             <hr>
                             <div class="bt_wrap" style = "float: right;">

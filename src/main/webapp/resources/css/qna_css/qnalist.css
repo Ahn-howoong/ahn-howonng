@@ -190,9 +190,8 @@
     clip: rect(0 0 0 0);
     margin: -1px;
     width: 1px;
-    height: 1px;
-  }
- .write{
+    height: 1px; 
+  } .write{
   float:right;
   padding-top: 10px;
  }

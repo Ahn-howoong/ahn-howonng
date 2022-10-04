@@ -30,9 +30,9 @@ public class NoticeDAO {
 	}
 
 	// 메인조회
-	public List<NoticeVO> list_main(Map<String, Object> map) {
+	public List<NoticeVO> list_main() {
 
-		List<NoticeVO> list = sqlSession.selectList("n.notice_main", map);
+		List<NoticeVO> list = sqlSession.selectList("n.notice_main");
 		return list;
 	}
 

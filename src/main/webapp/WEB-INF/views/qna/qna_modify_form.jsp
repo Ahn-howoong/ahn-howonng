@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>진리도서관 :: Q&A게시판</title>
 <link href="${pageContext.request.contextPath}/resources/css/qna_css/qna_modify.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/qna_css/qnacss.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
@@ -13,7 +13,7 @@
 <!--  <script src="${pageContext.request.contextPath}/resources/js/qnajs/qna_modify.js"></script>--> 
 </head>
 <script>
-function send(f){
+function send_check(f){
     //alert("d");
     
     var title = f.title.value;
@@ -50,7 +50,8 @@ function send(f){
                </ul>
             </nav>
             <div id="logo">
-               <a href="main.do"><img src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
+               <a href="main.do"><img
+                  src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
             </div>
          </div>
       </header>
@@ -113,10 +114,10 @@ function send(f){
                 <div class="board_wrap">
                 <div id="location">
                     <div class="loc_title">
-                        <h2>Q&A 등록</h2>
+                        <h2>Q&A 게시판</h2>
                     </div>
                     <div class="loc_history">
-                        홈  &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> Q&A </b>
+                        홈  &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> Q&A 게시판</b>
                     </div>
                 </div>
                <form method="post" action="qna_modify.do?idx=${vo.idx}&page=${empty param.page ? 1 : param.page}">

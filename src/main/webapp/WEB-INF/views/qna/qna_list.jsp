@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>진리도서관 :: Q&A게시판</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -131,46 +132,31 @@ function test() {
       </div>
     <div class = "box">
     <aside>
-        
-        
          <ul>
             <li id="strong">열린공간</li>
             <li><a href="notice_list.do">공지사항</a></li>
             <li><a href="qna_list.do">Q&A 게시판</a></li>
             <li><a href="often.do">자주 하는 질문</a></li>
             <li><a href="eventlist.do">행사 관련 안내</a></li>
-            
         </ul>
-  
-  
-</aside>
+	</aside>
 
-    <!-- <section class="box" style="height:500px">
-
-    </section> -->
-    
-     
-   
    <div class = "main">
-    
       <div class="page-title">
          <div id="location">
 		            <div>
-		              <h1> Q&A </h1>
+		              <h1>Q&A 게시판</h1>
 		            </div>
 		            <div class="loc_history">
-		              	홈 &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> Q&A </b>
+		              	홈 &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> Q&A 게시판 </b>
 		            </div>
-		     
         </div>
     
         <!-- board seach area -->
         
-        <div id="board-search">
-            
+        <div id="board-search">  
                 <div class="search-window">
-                    <form>
-                    
+                    <form method = "post">
                         <div class="search-wrap">
                             <select id ="search" style = "height : 40px; padding-left : 10px;">
                             	<option value="all" selected>전체</option>
@@ -178,19 +164,15 @@ function test() {
                             	<option value="title">제목</option>
                             </select>
                             <input id="search_res"  placeholder="검색어를 입력해주세요.">
-                            <input type="button" id ="btn" class="btn btn-dark" value="검색" onclick="test();">
+                            <input type="button" id ="btn" class="btn btn-dark" value="검색" onclick="test(this.form);">
                         </div>
                         </form>
                       </div>
-                   </div>
-                    
-                
+                   </div>    
             </div>
-  
-      
+
       <!-- board list area -->
-        <div id="board-list">
-          
+        <div id="board-list">    
                 <table class="board-table">
                     <thead>
                     <tr>
@@ -203,25 +185,27 @@ function test() {
                     </thead>
                <tbody>
 		<c:forEach var="vo" items="${ list }">
+		<input type = "hidden" name = "ref" value = "${ref}">
+		<input type = "hidden" name = "step" value = "${step}">
+		<input type = "hidden" name = "depth" value = "${depth}">
 		<tr>
 			<td align="center">${ vo.idx }</td>
 			
 			<td style = "text-align : left; padding-left : 10px;">
-			<!-- 댓글일경우 제목을 들여쓰기 한다 -->
-			<c:forEach begin="1" end="${ vo.depth }">&nbsp;</c:forEach>
-			
-			<!-- 댓글기호 -->
-			<c:if test="${ vo.depth ne 0 }">ㄴ[re]:</c:if>
-			
-			<!-- 삭제된 글일경우 클릭이 불가 -->
-			<c:if test="${ vo.del eq 0 }">
-				<a href="qna_view.do?idx=${ vo.idx }&page=${empty param.page ? 1 : param.page }">${ vo.title }</a>
-			</c:if>
-			
-			<c:if test="${ vo.del eq -1 }">
-				<font color="gray">${ vo.title }</font>
-			</c:if>
-			
+				<!-- 댓글일경우 제목을 들여쓰기 한다 -->
+				<c:forEach begin="1" end="${ vo.depth }">&nbsp;</c:forEach>
+				
+				<!-- 댓글기호 -->
+				<c:if test="${ vo.depth ne 0 }">ㄴ[re]:</c:if>
+				
+				<!-- 삭제된 글일경우 클릭이 불가 -->
+				<c:if test="${ vo.del eq 0 }">
+					<a href="qna_view.do?idx=${ vo.idx }&page=${empty param.page ? 1 : param.page }">${ vo.title }</a>
+				</c:if>
+				
+				<c:if test="${ vo.del eq -1 }">
+					<font color="gray">${ vo.title }</font>
+				</c:if>
 			</td>
 			
 			<td align="center">${ vo.id }</td>
@@ -232,21 +216,19 @@ function test() {
 		</tr>
 
 		</c:forEach>
-	
-                   
-                   
                     </tbody>
                 </table>
-          
+          <tr>
 			<c:if test="${!empty list}">
 						<p align="center">${pageMenu}</p>
 					</c:if>
-
+			</tr>
 		
-                <div class = "write">
-                <input type="button" class="btn btn-dark" value="글쓰기" onclick="location.href='qna_insert_form.do'">
+            <div class = "write">
+                <c:if test="${user.id eq 'admin'}">
+                	<input type="button" class="btn btn-dark" value="글쓰기" onclick="location.href='qna_insert_form.do'">
+            	</c:if>
             </div>
-       
       </div>
     </div>
   </div>
@@ -267,12 +249,5 @@ function test() {
       </div> 
     </footer>
     
-
-    
-    
-    
-    
-      
-      
 </body>
 </html>

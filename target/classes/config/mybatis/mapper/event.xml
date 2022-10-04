@@ -11,6 +11,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          where no between #{start} and #{end}
 
 	</select>
+	
+	<!-- 메인조회 -->
+	<select id="event_main" resultType="event"> 
+		<![CDATA[select * from event
+		where rownum <= 6
+		order by idx desc]]> 
+	</select>
+	
 	<select id="event_all" resultType="event"
 		parameterType="java.util.Map">
 		select * from

@@ -60,6 +60,10 @@
             font-weight: bold;
             font-size: 20px;
         }
+        
+        #location h1 { font-size:32px; font-weight:bold; }  
+    
+    	.loc_history { padding:20px 0; border-bottom: 2px solid #ccc; margin-bottom:20px; }
 
         #sticky {
             background-color: #fff;

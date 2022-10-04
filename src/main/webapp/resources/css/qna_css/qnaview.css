@@ -260,7 +260,7 @@
             float:right;
             text-align: center;
             font-size: 0;
-            cursor: pointer;
+            
         }
 
         .bt_wrap input {
@@ -327,4 +327,5 @@
     	font-size: 16px;
     	background: #373737;
     	color: #fff;
+    	cursor: pointer;
 		}

@@ -6,13 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="qnalist" resultType="qna"
 		parameterType="java.util.Map">
-		select * from(select rank()over(order by idx desc) no, b.* from qna b)
+		select * from(select rank()over(order by ref desc, idx asc) no, b.* from qna b)
 		where no between #{start} and #{end}
 	</select>
-
+	
+	<!-- 메인조회 -->
+	<select id="qna_main" resultType="qna"> 
+		<![CDATA[select * from qna 
+		where rownum <= 6 and del = 0 and depth = 0
+		order by idx desc]]> 
+	</select>
+	
 	<select id="qna_list" resultType="qna"
 		parameterType="java.util.Map">
-		select * from (select rank() over(order by idx desc) no, b.* from
+		select * from (select rank() over(order by ref desc, idx asc) no, b.* from
 		(select * from
 		qna where id like '%'|| #{search_res} ||'%'
 		or title like '%'|| #{search_res} ||'%' ) b ) where no between
@@ -22,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="qna_id" resultType="qna"
 		parameterType="java.util.Map">
-		select * from(select rank() over(order by idx desc) no, b.* from
+		select * from(select rank() over(order by ref desc, idx asc) no, b.* from
 		(select * from
 		qna where id like '%'|| #{search_res} ||'%') b ) where no between
 		#{start} and #{end}
@@ -30,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="qna_title" resultType="qna"
 		parameterType="java.util.Map">
-		select * from(select rank()over(order by idx desc) no, b.* from
+		select * from(select rank()over(order by ref desc, idx asc) no, b.* from
 		(select * from
 		qna where title like '%'|| #{search_res} ||'%') b ) where no between
 		#{start} and #{end}
@@ -76,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<!-- step값 증가 -->
-	<update id="qna_update_step" parameterType="qna">
+	<update id="qna_update_step" parameterType="int">
 		update qna set step =
 		step + 1
 		where ref=#{ref} and step > #{step}

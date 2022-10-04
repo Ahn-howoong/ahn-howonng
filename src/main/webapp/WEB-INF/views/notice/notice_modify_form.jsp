@@ -179,7 +179,9 @@
 				<input type="hidden" name="page" value="${param.page}">
 	            <div class="board_wrap">
 	                <h2>공지사항</h2>
-	                <hr>
+	                <div class="loc_history">
+		              	홈 &nbsp;>&nbsp; 열린공간 &nbsp;> &nbsp; <b> 공지사항 </b>
+		            </div>
 	                <div class="box">
 	                    <div class="board_write">
 	                        <div class="title">

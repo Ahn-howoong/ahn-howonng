@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +87,7 @@
 										<li><a href="request.do">희망도서신청</a></li>
 									</div>
 								</ul></li>
-							<li><a href="location.href='library_guide.do'" class="title">도서관소개</a>
+							<li><a href="library_guide.do" class="title">도서관소개</a>
 								<ul class="nav_dropdown">
 									<div class="menu_bd">
 										<li><a href="library_guide.do">도서관 안내</a></li>
@@ -95,7 +96,7 @@
 										<li><a href="membership.do">회원증 발급</a></li>
 									</div>
 								</ul></li>
-							<li><a href="location.href='notice_list.do'" class="title">열린공간</a>
+							<li><a href="notice_list.do" class="title">열린공간</a>
 								<ul class="nav_dropdown">
 									<div class="menu_bd">
 										<li><a href="notice_list.do">공지사항</a></li>
@@ -266,12 +267,12 @@
 			<div class="notice">
 				<ul class="n_menu">
 					<li class="tab-link current" data-tab="tab-1">공지사항</li>
-					<li class="tab-link" data-tab="tab-2">문화강좌</li>
-					<li class="tab-link" data-tab="tab-3">프로그램 신청</li>
+					<li class="tab-link" data-tab="tab-2">Q&A게시판</li>
+					<li class="tab-link" data-tab="tab-3">행사안내</li>
 				</ul>
 				<div id="tab-1" class="tab-content current">
-					<c:forEach begin="1" end="7" var="vo" items="${n_list}">
-						<p><a href="notice_view.do?idx=${vo.idx}&page=1">${vo.title}</a><span>${vo.regidate}</span></p>
+					<c:forEach begin="1" end="7" var="n" items="${n_list}">
+						<p><a href="notice_view.do?idx=${n.idx}&page=1">${fn:substring(n.title, 0, 30)}</a><span>${n.regidate}</span></p>
 					</c:forEach>
 					<!-- <a href="#">&lt;<b>책벌레 클럽 주최</b>&gt; 월간 독서 모임
 					</a><br> <a href="#">&lt;<b>2022 여름 북토크</b>&gt; 이만큼 가까이 - 정세랑
@@ -286,21 +287,27 @@
 					</a> -->
 				</div>
 				<div id="tab-2" class="tab-content">
-					<a href="#"><b>[문화강좌]</b> 2022년 4기(10~12월) 문화강좌 회원 모집</a><br>
+					<c:forEach begin="1" end="7" var="q" items="${q_list}">
+						<p><a href="qna_view.do?idx=${q.idx}&page=1">${fn:substring(q.title, 0, 30)}</a><span>${fn:split(q.regidate, ' ')[0]}</span></p>
+					</c:forEach>
+					<!-- <a href="#"><b>[문화강좌]</b> 2022년 4기(10~12월) 문화강좌 회원 모집</a><br>
 					<a href="#"><b>[문화강좌]</b> 2022년 3기(7~9월) 문화강좌 회원 모집</a><br> <a
 						href="#"><b>[문화강좌]</b> 2022년 2기(4~6월) 문화강좌 회원 모집</a><br> <a
 						href="#"><b>[문화강좌]</b> 2022년 1기(2-3월) 문화강좌 회원 모집</a><br> <a
 						href="#"><b>[문화강좌]</b> 2022년 4기(10~12월) 문화강좌 회원 모집</a><br> <a
 						href="#"><b>[문화강좌]</b> 2022년 3기(7~9월) 문화강좌 회원 모집</a><br> <a
-						href="#"><b>[문화강좌]</b> 2022년 2기(4~6월) 문화강좌 회원 모집</a><br>
+						href="#"><b>[문화강좌]</b> 2022년 2기(4~6월) 문화강좌 회원 모집</a><br> -->
 				</div>
 				<div id="tab-3" class="tab-content">
-					<a href="#"><b>[독서문화프로그램]</b> 직장인을 위한 레벨업 프로젝트</a><br> <a
+					<c:forEach begin="1" end="7" var="e" items="${e_list}">
+						<p><a href="eventview.do?idx=${e.idx}&page=1">${fn:substring(e.title, 0, 30)}</a><span>${fn:split(e.regdate, ' ')[0]}</span></p>
+					</c:forEach>
+					<!-- <a href="#"><b>[독서문화프로그램]</b> 직장인을 위한 레벨업 프로젝트</a><br> <a
 						href="#"><b>[2022책축제]</b> 창작 인형극</a><br> <a href="#"><b>[2022책축제]</b>
 						그림책극장 체험키트 신청</a><br> <a href="#"><b>[독서문화프로그램]</b> 직장인을 위한
 						레벨업 프로젝트</a><br> <a href="#"><b>[2022책축제]</b> 창작 인형극</a><br>
 					<a href="#"><b>[2022책축제]</b> 그림책극장 체험키트 신청</a><br> <a href="#"><b>[2022책축제]</b>
-						그림책극장 체험키트 신청</a><br>
+						그림책극장 체험키트 신청</a><br> -->
 				</div>
 			</div>
 		</section>

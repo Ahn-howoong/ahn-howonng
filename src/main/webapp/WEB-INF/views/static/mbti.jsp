@@ -53,15 +53,6 @@ function next() {
 		$("#explain1").html(result[mbti]["explain1"]);
 		$("#explain2").html(result[mbti]["explain2"]);
 		$("#explain3").html(result[mbti]["explain3"]);
-		
-		 /* document.getElementById("search").onclick = function() {
-			    document.getElementById("search").setAttribute("href", 'search.do?search=' + result[mbti]["book"]);
-			    console.log("Hyperlink Changed");
-			}	 */	 
-			 
-				//.href='search.do?search=' + result[mbti]["book"]';
-		
-		//alert(result[mbti]["book"]);
 	} else {
 		var str = (num < 10) ? "0" + num : num;
 		$(".progress-bar").attr("style", "width : calc(100/12 * " + num + "%)");
